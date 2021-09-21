@@ -19,7 +19,7 @@ namespace ChaseOS2._0
         public bool driveCon;
         CosmosVFS FileManager = new Sys.FileSystem.CosmosVFS();
         CosmosVFS Backup = new Sys.FileSystem.CosmosVFS();
-        private static Graphics gui;
+        public static Graphics gui;
         private static Commands OS;
         protected override void BeforeRun()
         {
@@ -435,13 +435,10 @@ namespace ChaseOS2._0
             }
             catch (Exception e)
             {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.Clear();
-                Console.WriteLine("A system error has occured. This can potentially mean that you should reinstall ChaseOS.");
-                Console.WriteLine(e);
-                Console.WriteLine("Restarting in 5 seconds...");
-                WaitSeconds(5);
-                Sys.Power.Reboot();
+                Console.WriteLine("The error '" + e + "' occured on startup, attempting to contine with os, some features will be broken due to this.");
+                Console.ReadLine();
+                // Filemanager might be corrupted, set it to null.
+                FileManager = Backup;
                 Run();
             }
             Console.WriteLine("Loaded.");
@@ -449,7 +446,7 @@ namespace ChaseOS2._0
             string bootmode = Console.ReadLine();
             if (bootmode == "G")
             {
-
+                gui = new Graphics();
             }
         }
         protected override void Run()

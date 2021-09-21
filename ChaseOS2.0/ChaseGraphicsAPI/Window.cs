@@ -196,5 +196,10 @@ class Window
 
         }
     }
+        public void addComponent(WindowComponent windowComponent)
+        {
+            this.components.Add(windowComponent);
+            windowComponent.draw(this);
+        }
 }
 }

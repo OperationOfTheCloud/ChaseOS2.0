@@ -21,7 +21,7 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
         }
         public override void draw(Window sender)
         {
-            base.draw(sender);
+            
             UInt16 ctr = 0;
             foreach (Char c in text)
             {

@@ -12,7 +12,7 @@ class Window
 {
     private List<Tuple<Sys.Graphics.Point, Color>> storePixelsbehindtab;
 
-    private static List<Window> windows = new List<Window>();
+    public static List<Window> windows = new List<Window>();
     private static Pen outlinePen = new Pen(Color.White);
     internal const Int32 defaultwindowSize = 400, windowTopPartSize = 25, xBtnSize = 25;
     private List<WindowComponent> components;
@@ -52,7 +52,7 @@ class Window
 
         }
     }
-    private void draw(Canvas canvas)
+    public void draw(Canvas canvas)
     {
         try
         {

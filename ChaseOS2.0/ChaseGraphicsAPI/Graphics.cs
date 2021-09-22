@@ -81,10 +81,22 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
                 savedPixels.Add(new Tuple<Sys.Graphics.Point, Color>(p, canvas.GetPointColor(p.X, p.Y)));
                 canvas.DrawPoint(pen, p);
                 usage += 1;
-                if (usage >= CPU.GetAmountOfRAM())
+                if (usage >= CPU.GetAmountOfRAM() * 5)
                 {
+                    canvas.Clear(Color.Gray);
                     savedPixels.Clear();
+                    pen = new Pen(Color.White);
+                    int rows = canvas.Mode.Rows;
+                    int columns = canvas.Mode.Columns;
+                    canvas.DrawRectangle(pen, 0, rows - 100, columns - 2, 99);
+                    canvas.DrawRectangle(pen, 0, rows - 100, 100, 99);
+                    canvas.DrawLine(pen, 25, rows - 90, 75, rows - 10);
+                    foreach (Window window in Window.windows)
+                    {
+                        window.draw(canvas);
+                    }
                     usage = 0;
+
                 }
             }
             if (mouseState == MouseState.Left && prevmouseState == MouseState.Left)

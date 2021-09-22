@@ -5,7 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-
+using Cosmos.Core;
+using Cosmos.HAL;
 namespace ChaseOS2._0.ChaseGraphicsAPI
 {
     public class Graphics
@@ -23,8 +24,10 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
         private UInt32 px, py;
         private List<Tuple<Sys.Graphics.Point, Color>> savedPixels;
         public static bool ART;
+        public int usage = 0;
         public Graphics()
         {
+
 
             canvas = FullScreenCanvas.GetFullScreenCanvas();
             canvas.Clear(Color.Gray);
@@ -77,6 +80,12 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
             {
                 savedPixels.Add(new Tuple<Sys.Graphics.Point, Color>(p, canvas.GetPointColor(p.X, p.Y)));
                 canvas.DrawPoint(pen, p);
+                usage += 1;
+                if (usage >= CPU.GetAmountOfRAM())
+                {
+                    savedPixels.Clear();
+                    usage = 0;
+                }
             }
             if (mouseState == MouseState.Left && prevmouseState == MouseState.Left)
             {

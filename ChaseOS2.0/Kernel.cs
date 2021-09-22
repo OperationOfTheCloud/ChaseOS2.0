@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using Sys = Cosmos.System;
 using ChaseOS.Core;
+
 namespace ChaseOS2._0
 {
     public class Kernel : Sys.Kernel
@@ -17,8 +18,7 @@ namespace ChaseOS2._0
         public string cddefault;
         public bool login;
         public bool driveCon;
-        CosmosVFS FileManager = new Sys.FileSystem.CosmosVFS();
-        CosmosVFS Backup = new Sys.FileSystem.CosmosVFS();
+        public static CosmosVFS FileManager = new Sys.FileSystem.CosmosVFS();
         public static Graphics gui;
         private static Commands OS;
         protected override void BeforeRun()
@@ -437,8 +437,6 @@ namespace ChaseOS2._0
             {
                 Console.WriteLine("The error '" + e + "' occured on startup, attempting to contine with os, some features will be broken due to this.");
                 Console.ReadLine();
-                // Filemanager might be corrupted, set it to null.
-                FileManager = Backup;
                 Run();
             }
             Console.WriteLine("Loaded.");

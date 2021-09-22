@@ -16,19 +16,24 @@ using Cosmos.Core;
 using System.Threading;
 using ChaseOS.Core;
 using Cosmos.HAL;
-
+using System.Net.Sockets;
+using ChaseOS2._0;
 namespace ChaseOS.Core
 {
     class Commands
     {
 
         public string cddefault;
+        public CosmosVFS FileManager;
 
-        CosmosVFS FileManager = new Sys.FileSystem.CosmosVFS();
-        CosmosVFS Backup = new Sys.FileSystem.CosmosVFS();
         public Commands()
         {
-            cddefault = @"0:/";
+
+
+            FileManager = Kernel.FileManager;
+        cddefault = @"0:/";
+            
+
         }
 
         public void ChaseOSRun()

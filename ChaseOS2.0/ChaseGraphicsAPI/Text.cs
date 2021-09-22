@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Cosmos.System.Graphics; 
+using Cosmos.System.Graphics;
 namespace ChaseOS2._0.ChaseGraphicsAPI
 {
     internal class Text:WindowComponent

@@ -196,10 +196,11 @@ class Window
 
         }
     }
-        public void addComponent(WindowComponent windowComponent)
+        public void addComponent(WindowComponent windowComponent, Canvas canvas)
         {
             this.components.Add(windowComponent);
             windowComponent.draw(this);
+            storePixelsbehindTab(canvas);
         }
 }
 }

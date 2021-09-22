@@ -14,7 +14,7 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
         {
             cool = new Pen(Color.White);
             font = new ChaseFont(Text.defaultFontData);
-            this.addComponent(new Text(0, 0, "ChaseOS V34", font, cool));
+            this.addComponent(new Text(0, 0, "ChaseOS V34", font, cool), canvas);
         }
 }
 }

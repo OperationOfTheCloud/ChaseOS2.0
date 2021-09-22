@@ -193,7 +193,7 @@ class Window
         }
         catch
         {
-
+                
         }
     }
         public void addComponent(WindowComponent windowComponent, Canvas canvas)

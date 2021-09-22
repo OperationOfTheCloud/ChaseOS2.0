@@ -468,6 +468,7 @@ namespace ChaseOS2._0
                 Console.WriteLine("Restarting in 10 seconds...");
                 WaitSeconds(10);
                 Sys.Power.Reboot();
+
             }
         }
         public static void WaitSeconds(int secNum)

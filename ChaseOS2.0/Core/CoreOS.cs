@@ -218,81 +218,88 @@ namespace ChaseOS.Core
                 }
                 if (cmd == "calc")
                 {
-                    // Declare variables and then initialize to zero.
-                    int num1 = 0; int num2 = 0;
-
-                    // Display title as the C# console calculator app.
-                    Console.WriteLine("Welcome to the ChaseOS calculator\r");
-                    Console.WriteLine("------------------------\n");
-
-                    // Ask the user to type the first number.
-                    Console.WriteLine("Type a number, and then press Enter");
-
-
-                    // Ask the user to choose an option.
-                    Console.WriteLine("Choose an option from the following list:");
-                    Console.WriteLine("\ta - Add");
-                    Console.WriteLine("\ts - Subtract");
-                    Console.WriteLine("\tm - Multiply");
-                    Console.WriteLine("\td - Divide");
-                    Console.WriteLine("\tsq - Square");
-                    Console.WriteLine("\tsqr - Square root");
-                    Console.Write("Which option do you want to do? ");
-
-                    // Use a switch statement to do the math.
-                    switch (Console.ReadLine())
+                    try
                     {
-                        case "a":
-                            Console.WriteLine("Enter a number");
-                            num1 = Convert.ToInt32(Console.ReadLine());
-                            // Ask the user to type the second number.
-                            Console.WriteLine("Type another number, and then press Enter");
-                            num2 = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
-                            break;
-                        case "s":
-                            Console.WriteLine("Enter a number");
-                            num1 = Convert.ToInt32(Console.ReadLine());
+                        // Declare variables and then initialize to zero.
+                        int num1 = 0; int num2 = 0;
 
-                            // Ask the user to type the second number.
-                            Console.WriteLine("Type another number, and then press Enter");
-                            num2 = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
-                            break;
-                        case "m":
-                            Console.WriteLine("Enter a number");
-                            num1 = Convert.ToInt32(Console.ReadLine());
+                        // Display title as the C# console calculator app.
+                        Console.WriteLine("Welcome to the ChaseOS calculator\r");
+                        Console.WriteLine("------------------------\n");
 
-                            // Ask the user to type the second number.
-                            Console.WriteLine("Type another number, and then press Enter");
-                            num2 = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
-                            break;
-                        case "d":
-                            Console.WriteLine("Enter a number");
-                            num1 = Convert.ToInt32(Console.ReadLine());
+                        // Ask the user to type the first number.
+                        Console.WriteLine("Type a number, and then press Enter");
 
-                            // Ask the user to type the second number.
-                            Console.WriteLine("Type another number, and then press Enter");
-                            num2 = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
-                            break;
-                        case "sq":
-                            Console.WriteLine("What number to square?");
-                            num1 = Convert.ToInt32(Console.ReadLine());
-                            // Ask the user to type the second number.
-                            Console.WriteLine($"Your result: " + num1 + " * " + num1 + " = " + (num1 * num1));
-                            break;
-                        case "sqr":
-                            Console.WriteLine("What number to find the square root of?");
-                            num1 = Convert.ToInt32(Console.ReadLine());
-                            double hi = Math.Sqrt(num1);
-                            Console.WriteLine($"Your result: " + hi);
-                            break;
+
+                        // Ask the user to choose an option.
+                        Console.WriteLine("Choose an option from the following list:");
+                        Console.WriteLine("\ta - Add");
+                        Console.WriteLine("\ts - Subtract");
+                        Console.WriteLine("\tm - Multiply");
+                        Console.WriteLine("\td - Divide");
+                        Console.WriteLine("\tsq - Square");
+                        Console.WriteLine("\tsqr - Square root");
+                        Console.Write("Which option do you want to do? ");
+
+                        // Use a switch statement to do the math.
+                        switch (Console.ReadLine())
+                        {
+                            case "a":
+                                Console.WriteLine("Enter a number");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+                                // Ask the user to type the second number.
+                                Console.WriteLine("Type another number, and then press Enter");
+                                num2 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
+                                break;
+                            case "s":
+                                Console.WriteLine("Enter a number");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+
+                                // Ask the user to type the second number.
+                                Console.WriteLine("Type another number, and then press Enter");
+                                num2 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
+                                break;
+                            case "m":
+                                Console.WriteLine("Enter a number");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+
+                                // Ask the user to type the second number.
+                                Console.WriteLine("Type another number, and then press Enter");
+                                num2 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
+                                break;
+                            case "d":
+                                Console.WriteLine("Enter a number");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+
+                                // Ask the user to type the second number.
+                                Console.WriteLine("Type another number, and then press Enter");
+                                num2 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
+                                break;
+                            case "sq":
+                                Console.WriteLine("What number to square?");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+                                // Ask the user to type the second number.
+                                Console.WriteLine($"Your result: " + num1 + " * " + num1 + " = " + (num1 * num1));
+                                break;
+                            case "sqr":
+                                Console.WriteLine("What number to find the square root of?");
+                                num1 = Convert.ToInt32(Console.ReadLine());
+                                double hi = Math.Sqrt(num1);
+                                Console.WriteLine($"Your result: " + hi);
+                                break;
+                        }
+                        // Wait for the user to respond before closing.
+
+                        goto Begin;
+                    } catch
+                    {
+                        Console.WriteLine("ERROR OCCURED. PLEASE TRY AGAIN");
+                        goto Begin;
                     }
-                    // Wait for the user to respond before closing.
-
-                    goto Begin;
                 }
                 if (cmd == "removedirectory")
                 {

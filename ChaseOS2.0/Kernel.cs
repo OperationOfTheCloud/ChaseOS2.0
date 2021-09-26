@@ -25,7 +25,7 @@ namespace ChaseOS2._0
         {
             try
             {
-                Console.WriteLine("Welcome to ChaseOS, the calculator that can store files!");
+                Console.WriteLine("Welcome to ChaseOS 2.0, a revamp of ChaseOS");
                 Console.WriteLine("Preparing...");
                 Sys.FileSystem.VFS.VFSManager.RegisterVFS(FileManager);
                 Console.WriteLine("Welcome.");
@@ -435,6 +435,7 @@ namespace ChaseOS2._0
             }
             catch (Exception e)
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("The error '" + e + "' occured on startup, attempting to contine with os, some features will be broken due to this.");
                 Console.ReadLine();
                 Run();

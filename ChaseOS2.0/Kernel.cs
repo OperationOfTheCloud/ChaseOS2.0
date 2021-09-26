@@ -362,7 +362,7 @@ namespace ChaseOS2._0
                                                         // Ask the user to type the second number.
                                                         Console.WriteLine($"Your result: " + num1 + " * " + num1 + " = " + (num1 * num1));
                                                         break;
-
+                                                    
                                                 }
                                                 // Wait for the user to respond before closing.
 
@@ -451,9 +451,12 @@ namespace ChaseOS2._0
             catch (Exception e)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
-                Console.WriteLine("The error '" + e + "' occured on startup, attempting to contine with os, some features will be broken due to this.");
-                Console.ReadLine();
-                Run();
+                Console.Clear();
+                Console.WriteLine("A system error has occured. This can potentially mean that you should reinstall ChaseOS.");
+                Console.WriteLine(e);
+                Console.WriteLine("Restarting in 10 seconds...");
+                WaitSeconds(10);
+                Sys.Power.Reboot();
             }
             Console.WriteLine("Loaded.");
             Console.WriteLine("Boot into graphical or non-graphical mode? G/N");

@@ -291,6 +291,13 @@ namespace ChaseOS.Core
                                 double hi = Math.Sqrt(num1);
                                 Console.WriteLine($"Your result: " + hi);
                                 break;
+                            case "per":
+                                Console.WriteLine("Percent?");
+                                double bruh = Convert.ToInt32(Console.ReadLine())/100;
+                                Console.WriteLine("Number?");
+                                int nub = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(bruh * nub);
+                                break;
                         }
                         // Wait for the user to respond before closing.
 

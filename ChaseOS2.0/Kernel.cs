@@ -454,7 +454,20 @@ namespace ChaseOS2._0
                 Console.Clear();
                 Console.WriteLine("A system error has occured. This can potentially mean that you should reinstall ChaseOS.");
                 Console.WriteLine(e);
-                Console.WriteLine("Restarting in 10 seconds...");
+                Console.WriteLine("Preparing automatic repair...");
+                try
+                {
+                    var file1 = FileManager.GetFile(@"0:\loginData.sys");
+                    FileManager.DeleteFile(file1);
+                    var file2 = FileManager.GetFile(@"0:\login.sys");
+                    FileManager.DeleteFile(file2);
+                    Console.WriteLine("Repaired");
+                } catch
+                {
+                    
+                    Console.WriteLine("A system repair error has occured. This can potentially mean that you should reinstall ChaseOS.");
+                    Console.WriteLine(e);
+                }
                 WaitSeconds(10);
                 Sys.Power.Reboot();
             }

@@ -34,7 +34,7 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
                 {
                     if (pixelData.Item3)
                     {
-                        Graphics.canvas.DrawPoint(pen, new Point(pixelData.Item1 + ctr + sender.x, pixelData.Item2 + sender.y + Window.windowTopPartSize+y));
+                        Kernel.gui.canvas.DrawPoint(pen, new Point(pixelData.Item1 + ctr + sender.x, pixelData.Item2 + sender.y + Window.windowTopPartSize+y));
 
                     }
                 }

@@ -42,7 +42,24 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
             List<Tuple<UInt16, UInt16, Boolean>> returnData = new List<Tuple<UInt16, UInt16,Boolean>>();
             foreach (Byte b in getRawDataAt(index))
             {
-                sb.Append(b.toBinary());
+                Byte[] noob = new Byte[] { b };
+                char ch = char.Parse(noob.ToString()) ;
+                int num;
+                string s = "";
+                num = (int)ch;
+
+                while (num != 0)
+                {
+                    s = (num % 2) + s;
+                    num = num / 2;
+                }
+                for (int i = s.Length; i < 8; i++)
+                {
+                    s = 0 + s;
+                }
+                
+
+                sb.Append(s);
             }
             sb.ToString();
             UInt16 x=0, y = 0;
@@ -63,54 +80,9 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
         public List<Byte> getRawDataAt(UInt16 index)
         {
             Byte[] bruh = Encoding.ASCII.GetBytes("");
-            return (List<byte>)data.skip(1 + (take * index)).Take(take);
+            return (List<Byte>)data.Skip(1 + (take * index)).Take(take);
         }
     }
-    public static class LinqSubstitutes
-    {
-        public static List<Byte> skip(this Byte[] bytes, Int32 count)
-        {
-            List<Byte> data = new List<Byte>();
-            Int32 ctr = count;
-            while (true)
-            {
-                try { data.Add(bytes[ctr]); }
-                catch
-                {
-                    break;
-                }
-                ctr++;
-            }
-            return data;
-        }
-        public static List<Byte> take(this Byte[] bytes, Int32 count)
-        {
-            List<Byte> data = new List<Byte>();
-            Int32 ctr = count;
-            while (ctr <= count)
-            {
-                try { data.Add((bytes[ctr])); } catch {
-                    break;
-                }
-                ctr++;
-            }
-            return data;
-        }
-        public static String toBinary(this Byte h)
-        {
-            Byte a = 0;
-            StringBuilder str = new StringBuilder(8);
-            Int32[] vs = new Int32[8];
-            while (a < str.Length)
-            {
-                vs[vs.Length - 1 - a] = ((h & (1 << a)) != 0) ? 1 : 0;
-                a++;
-            }
-            foreach (Int32 num in vs)
-            {
-                str.Append(num.ToString());
-            }
-            return str.ToString();
-        }
-    }
+
+    
 }

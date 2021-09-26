@@ -56,8 +56,8 @@ class Window
     {
         try
         {
-
-            canvas.DrawRectangle(Window.outlinePen, x, y, defaultwindowSize, windowTopPartSize);
+                storePixelsbehindTab(canvas);
+                canvas.DrawRectangle(Window.outlinePen, x, y, defaultwindowSize, windowTopPartSize);
             canvas.DrawRectangle(Window.outlinePen, x + (defaultwindowSize - xBtnSize), y, xBtnSize, xBtnSize);
             outlinePen.Color = Color.Red;
             canvas.DrawFilledRectangle(Window.outlinePen, x + (Window.defaultwindowSize - Window.xBtnSize - 1), y + 1, xBtnSize, xBtnSize);
@@ -67,7 +67,7 @@ class Window
             {
                 tc.draw(this);
             }
-            storePixelsbehindTab(canvas);
+            
         }
         catch
         {
@@ -93,9 +93,9 @@ class Window
         try
         {
 
-            restorePixelsbehindtab(canvas);
+                restorePixelsbehindtab(canvas);
             Window.windows.Remove(this);
-            this.draw(canvas);
+
         }
         catch
         {
@@ -200,7 +200,7 @@ class Window
         {
             this.components.Add(windowComponent);
             windowComponent.draw(this);
-            storePixelsbehindTab(canvas);
+
         }
 }
 }

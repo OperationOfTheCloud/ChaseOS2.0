@@ -25,14 +25,43 @@ namespace ChaseOS.Core
 
         public string cddefault;
         public CosmosVFS FileManager;
-
+        public string rootUser;
+        public string rootPass;
+        public bool admin;
         public Commands()
         {
 
 
             FileManager = Kernel.FileManager;
         cddefault = @"0:/";
-            
+            var thing = FileManager.GetFile(@"0:\root.sys");
+            var thingr = FileManager.GetFile(@"0:\rootData.sys");
+            var check = thing.GetFileStream();
+
+            byte[] dataread1 = new byte[1];
+            byte[] dataread2 = new byte[1];
+            var datastream1 = thingr.GetFileStream();
+            datastream1.Read(dataread1, 0, 1);
+            datastream1.Read(dataread2, 0, 1);
+            int data1 = Convert.ToInt32(Encoding.Default.GetString(dataread1));
+            int data2 = Convert.ToInt32(Encoding.Default.GetString(dataread2));
+            byte[] buffer = new byte[data1];
+            string UsernameReal = "";
+
+
+
+
+
+            check.Read(buffer, 0, (data1));
+            UsernameReal = Encoding.Default.GetString(buffer);
+
+            string pass;
+            byte[] passWordReal = new byte[data2];
+            check.Read(passWordReal, 0, (data2));
+            pass = Encoding.Default.GetString(passWordReal);
+            check.Close();
+            rootPass = pass;
+            rootUser = UsernameReal;
 
         }
 
@@ -52,7 +81,36 @@ namespace ChaseOS.Core
                 {
                     cddefault = cddefault + @"/";
                 }
+                if  (cmd == "admin")
+                {
+                    if (admin == false)
+                    {
+                        bool login = false;
+                        while (login == false)
+                        {
+                            Console.WriteLine("Username?");
+                            string user = Console.ReadLine();
+                            Console.WriteLine("Password:");
+                            string password = Console.ReadLine();
+                            if (user == rootUser && password == rootPass)
+                            {
+                                login = true;
+                                Console.WriteLine("Welcome " + user);
+                                admin = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("The username or password you entered is incorrect, try again");
+                            }
 
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You are already admin!");
+                    }
+                    goto Begin;
+                    }
                 if (cmd == "reese")
                 {
                     goto Begin;
@@ -323,12 +381,19 @@ namespace ChaseOS.Core
 
                     if (filename.EndsWith(".sys"))
                     {
-                        Console.WriteLine("This is a system file. Are you sure you want to do something with it? Y/N");
+                        Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
                         string con = Console.ReadLine();
                         if (con == "Y")
                         {
-                            FileManager.CreateFile(filename);
-                            goto Begin;
+                            if (admin == true)
+                            {
+                                FileManager.CreateFile(filename);
+                                goto Begin;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You must be an admin to do this action.");
+                            }
                         }
                         goto Begin;
                     }
@@ -342,20 +407,28 @@ namespace ChaseOS.Core
                     var file = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1);
                     if (filename1.EndsWith(".sys"))
                     {
-                        Console.WriteLine("This is a system file. Are you sure you want to do something with it? Y/N");
+                        Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
                         string con = Console.ReadLine();
                         if (con == "Y")
                         {
-                            var filestream1 = file.GetFileStream();
-                            Console.WriteLine("contents");
-                            string contents1 = Console.ReadLine();
-                            byte[] data1 = Encoding.ASCII.GetBytes(contents1);
-                            filestream1.Write(data1, 0, (int)contents1.Length);
-                            Console.WriteLine("file edited sucessfully");
-                            goto Begin;
+                            if (admin == true)
+                            {
+                                var filestream2= file.GetFileStream();
+                                Console.WriteLine("contents");
+                                string contents2 = Console.ReadLine();
+                                byte[] data2 = Encoding.ASCII.GetBytes(contents2);
+                                filestream2.Write(data2, 0, (int)contents2.Length);
+                                Console.WriteLine("file edited sucessfully");
+                                goto Begin;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You must be an admin to do this action.");
+                            }
                         }
                         goto Begin;
                     }
+
                     var filestream = file.GetFileStream();
                     Console.WriteLine("contents");
                     string contents = Console.ReadLine();
@@ -371,15 +444,25 @@ namespace ChaseOS.Core
                     var preprefilename2 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + prefilename2);
                     if (prefilename2.EndsWith(".sys"))
                     {
-                        Console.WriteLine("This is a system file. Are you sure you want to do something with it? Y/N");
+                        Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
                         string con = Console.ReadLine();
                         if (con == "Y")
                         {
-                            FileManager.DeleteFile(preprefilename2);
-                            goto Begin;
+                            if (admin == true)
+                            {
+                                var preprefilename3 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + prefilename2);
+
+                                FileManager.DeleteFile(preprefilename3);
+                                goto Begin;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You must be an admin to do this action.");
+                            }
                         }
                         goto Begin;
                     }
+
                     FileManager.DeleteFile(preprefilename2);
                     Console.WriteLine("The file " + prefilename2 + " has been deleted");
 
@@ -394,7 +477,33 @@ namespace ChaseOS.Core
                     file.Read(data, 0, (int)file.Length);
                     string content = Encoding.Default.GetString(data);
 
+                    if (prefile.EndsWith(".sys"))
+                    {
+                        Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
+                        string con = Console.ReadLine();
+                        if (con == "Y")
+                        {
+                            if (admin == true)
+                            {
 
+                                string filename2 = Console.ReadLine();
+                                Sys.FileSystem.VFS.VFSManager.CreateFile(@cddefault + filename2);
+                                var filenew2 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename2);
+                                var filestream2 = filenew2.GetFileStream();
+                                byte[] data12 = Encoding.ASCII.GetBytes(content);
+                                filestream2.Write(data12, 0, (int)content.Length);
+
+
+                                Console.WriteLine("file copied succesfully");
+                                goto Begin;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You must be an admin to do this action.");
+                            }
+                        }
+                        goto Begin;
+                    }
 
                     Console.WriteLine("filename of the new file");
                     string filename = Console.ReadLine();
@@ -403,7 +512,8 @@ namespace ChaseOS.Core
                     var filestream = filenew.GetFileStream();
                     byte[] data1 = Encoding.ASCII.GetBytes(content);
                     filestream.Write(data, 0, (int)content.Length);
-
+                    
+                    
                     Console.WriteLine("file copied succesfully");
                     goto Begin;
                 }
@@ -425,6 +535,29 @@ namespace ChaseOS.Core
                 {
                     Console.WriteLine("filename?");
                     var prefile = Console.ReadLine();
+                    if (prefile.EndsWith(".sys"))
+                    {
+                        Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
+                        string con = Console.ReadLine();
+                        if (con == "Y")
+                        {
+                            if (admin == true)
+                            {
+
+                                var file2 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + prefile).GetFileStream();
+                                byte[] data2 = new byte[file2.Length];
+                                file2.Read(data2, 0, (int)file2.Length);
+                                Console.WriteLine(Encoding.Default.GetString(data2));
+                                goto Begin;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You must be an admin to do this action.");
+                            }
+                        }
+                        goto Begin;
+                    }
+
                     var file = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + prefile).GetFileStream();
                     byte[] data = new byte[file.Length];
                     file.Read(data, 0, (int)file.Length);

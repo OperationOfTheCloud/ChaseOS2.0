@@ -18,6 +18,7 @@ using ChaseOS.Core;
 using Cosmos.HAL;
 using System.Net.Sockets;
 using ChaseOS2._0;
+using ChaseOS2._0.Core;
 namespace ChaseOS.Core
 {
     class Commands
@@ -28,6 +29,7 @@ namespace ChaseOS.Core
         public string rootUser;
         public string rootPass;
         public bool admin;
+        public InternalParse internalParse = new InternalParse();
         public Commands()
         {
 
@@ -81,6 +83,7 @@ namespace ChaseOS.Core
                 {
                     cddefault = cddefault + @"/";
                 }
+                
                 if  (cmd == "admin")
                 {
                     if (admin == false)
@@ -522,12 +525,36 @@ namespace ChaseOS.Core
                     ChaseOS2._0.ChaseGraphicsAPI.Graphics.THE = true;
                     goto Begin;
                 }
+                if (cmd == "chasecode")
+                {
+
+                    Console.WriteLine("Welcome to the ChaseOS interpreter. Enter a line of code.");
+                    internalParse.Program(Console.ReadLine());
+                }
                 if (cmd == "ls")
                 {
                     var directory_list = Sys.FileSystem.VFS.VFSManager.GetDirectoryListing(@cddefault);
-                    foreach (var directoryEntry in directory_list)
+                    if (admin == false)
                     {
-                        Console.WriteLine(directoryEntry.mName);
+                        foreach (var directoryEntry in directory_list)
+                        {
+                            if (directoryEntry.mName.EndsWith(".hid"))
+                            {
+                                Console.WriteLine("[THIS FILE CAN ONLY BE VIEWED BY AN ADMIN]");
+                            }
+                            else
+                            {
+                                Console.WriteLine(directoryEntry.mName);
+                            }
+                        }
+                    } else
+                    {
+                        foreach (var directoryEntry in directory_list)
+                        {
+                            {
+                                Console.WriteLine(directoryEntry.mName);
+                            }
+                        }
                     }
                     goto Begin;
                 }

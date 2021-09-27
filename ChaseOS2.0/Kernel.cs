@@ -9,6 +9,7 @@ using System.Text;
 using Sys = Cosmos.System;
 using ChaseOS.Core;
 
+
 namespace ChaseOS2._0
 {
     public class Kernel : Sys.Kernel
@@ -58,7 +59,7 @@ namespace ChaseOS2._0
                     string UsernameReal = "";
 
 
-
+                    
 
 
                     check.Read(buffer, 0, (data1));
@@ -112,7 +113,6 @@ namespace ChaseOS2._0
                                 Sys.FileSystem.VFS.VFSManager.CreateFile(@"0:\rootData.sys");
                                 Console.WriteLine("Welcome to Chase OS! Lets get some things started.");
                                 Console.WriteLine("Setup your username:");
-
                                 string user = Console.ReadLine();
                                 Console.WriteLine("Setup password for login:");
                                 string password = Console.ReadLine();
@@ -129,7 +129,6 @@ namespace ChaseOS2._0
                                 byte[] data2 = Encoding.ASCII.GetBytes(contents2);
                                 filestream2.Write(data2, 0, (int)contents2.Length);
                                 Console.WriteLine("Setup your admin username:");
-
                                 string user3 = Console.ReadLine();
                                 Console.WriteLine("Setup your admin password:");
                                 string password4 = Console.ReadLine();
@@ -145,6 +144,43 @@ namespace ChaseOS2._0
                                 string contents6 = @"" + user3.Length + "" + password4.Length;
                                 byte[] data7 = Encoding.ASCII.GetBytes(contents6);
                                 filestream5.Write(data7, 0, (int)contents6.Length);
+                                Console.WriteLine("We are all setup! Now we just need to setup the computer.");
+                                Console.WriteLine("This will take a few seconds...");
+
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 1/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 2/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 3/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 4/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 5/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 6/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 7/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 8/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 9/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... 10/10");
+                                WaitSeconds(1);
+                                Console.Clear();
+                                Console.WriteLine("Setting up... Loading...");
+                                Sys.Power.Reboot();
                                 break;
                             }
                             if (a == "skip")
@@ -161,7 +197,6 @@ namespace ChaseOS2._0
                                 {
                                     cddefault = cddefault + @"/";
                                 }
-
                                 if (cmd == "reese")
                                 {
                                     goto Begin;
@@ -228,7 +263,7 @@ namespace ChaseOS2._0
                                 }
                                 if (cmd == "version")
                                 {
-                                    Console.WriteLine("Version: 21.0, ChaseOS is an Operating system which is a small project, there is no gui design.");
+                                    Console.WriteLine("Version: 0.0.5, ChaseOS is an Operating system which is a small project, there is no gui design.");
                                     Console.WriteLine("Credits to Reese or chickendad#3076 for being a developer. Owner: Chase or dff#1307");
                                     goto Begin;
                                 }

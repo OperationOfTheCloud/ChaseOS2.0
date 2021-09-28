@@ -84,7 +84,20 @@ namespace ChaseOS2._0.Core
                 {
                     cddefault = cddefault + @"/";
                 }
-                
+                if (cmd == "runfile")
+                {
+                    Console.WriteLine("File?");
+                    string prefile = Console.ReadLine();
+                    var file = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + prefile).GetFileStream();
+                    byte[] data = new byte[file.Length];
+                    file.Read(data, 0, (int)file.Length);
+                    string script = Encoding.Default.GetString(data);
+                    string[] commands = script.Split("\n");
+                    foreach (string command in commands)
+                    {
+                        internalParse.Program(command);
+                    }
+                }
                 if  (cmd == "admin")
                 {
                     if (admin == false)
@@ -501,11 +514,19 @@ namespace ChaseOS2._0.Core
                         {
                             if (admin == true)
                             {
-                                var filestream2= file.GetFileStream();
+                                var filestream231 = file.GetFileStream();
                                 Console.WriteLine("contents");
-                                string contents2 = Console.ReadLine();
-                                byte[] data2 = Encoding.ASCII.GetBytes(contents2);
-                                filestream2.Write(data2, 0, (int)contents2.Length);
+                                string contents231 = Console.ReadLine();
+                                byte[] data231 = Encoding.ASCII.GetBytes(contents231);
+                                string newLine31 = "\n";
+                                byte[] data331 = Encoding.ASCII.GetBytes("\n");
+                                var file21 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1).GetFileStream();
+                                byte[] data1 = new byte[file21.Length];
+                                file21.Read(data1, 0, (int)file21.Length);
+                                string script1 = Encoding.Default.GetString(data1);
+                                filestream231.Write(data331, 0, (int)newLine31.Length);
+
+                                filestream231.Write(data231, 0, (int)contents231.Length);
                                 Console.WriteLine("file edited sucessfully");
                                 goto Begin;
                             }
@@ -517,11 +538,19 @@ namespace ChaseOS2._0.Core
                         goto Begin;
                     }
 
-                    var filestream = file.GetFileStream();
+                    var filestream23 = file.GetFileStream();
                     Console.WriteLine("contents");
-                    string contents = Console.ReadLine();
-                    byte[] data = Encoding.ASCII.GetBytes(contents);
-                    filestream.Write(data, 0, (int)contents.Length);
+                    string contents23 = Console.ReadLine();
+                    byte[] data23 = Encoding.ASCII.GetBytes(contents23);
+                    string newLine3 = "\n";
+                    byte[] data33 = Encoding.ASCII.GetBytes("\n");
+                    var file2 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1).GetFileStream();
+                    byte[] data = new byte[file2.Length];
+                    file2.Read(data, 0, (int)file2.Length);
+                    string script = Encoding.Default.GetString(data);
+                    filestream23.Write(data33, 0, (int)newLine3.Length);
+
+                    filestream23.Write(data23, 0, (int)contents23.Length);
                     Console.WriteLine("file edited sucessfully");
                     goto Begin;
                 }

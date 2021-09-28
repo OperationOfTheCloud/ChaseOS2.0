@@ -80,9 +80,6 @@ namespace ChaseOS2._0.Core
                         Console.WriteLine(segment[2]);
                     }
                     break;
-                case "createfile":
-                    Kernel.FileManager.CreateFile(segment[2]);
-                    break;
                 case "bsod":
                     Console.BackgroundColor = ConsoleColor.Blue;
                     Console.Clear();
@@ -96,16 +93,16 @@ namespace ChaseOS2._0.Core
                     WaitSeconds(int.Parse(segment[2]));
                     break;
                 case "addprint":
-                    Console.WriteLine(Convert.ToInt32(segment[1]) + Convert.ToInt32(segment[2]));
+                    Console.WriteLine(Convert.ToInt32(segment[2]) + Convert.ToInt32(segment[3]));
                     break;
                 case "subtractprint":
-                    Console.WriteLine(Convert.ToInt32(segment[1]) - Convert.ToInt32(segment[2]));
+                    Console.WriteLine(Convert.ToInt32(segment[2]) - Convert.ToInt32(segment[3]));
                     break;
                 case "multiplyprint":
-                    Console.WriteLine(Convert.ToInt32(segment[1]) * Convert.ToInt32(segment[2]));
+                    Console.WriteLine(Convert.ToInt32(segment[2]) * Convert.ToInt32(segment[3]));
                     break;
                 case "divideprint":
-                    Console.WriteLine(Convert.ToInt32(segment[1]) / Convert.ToInt32(segment[2]));
+                    Console.WriteLine(Convert.ToInt32(segment[2]) / Convert.ToInt32(segment[3]));
                     break;
                 case "input":
                     string bruh = Console.ReadLine();

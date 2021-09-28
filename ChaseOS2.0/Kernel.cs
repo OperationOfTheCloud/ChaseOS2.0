@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Text;
 using Sys = Cosmos.System;
 using ChaseOS.Core;
-
+using ChaseOS2._0.Core;
 
 namespace ChaseOS2._0
 {
@@ -780,11 +780,22 @@ namespace ChaseOS2._0
                 Sys.Power.Reboot();
             }
             Console.WriteLine("Loaded.");
-            Console.WriteLine("Boot into graphical or non-graphical mode? G/N");
+            Console.WriteLine("Boot into graphical or non-graphical or code mode? G/N/C");
             string bootmode = Console.ReadLine();
             if (bootmode == "G")
             {
                 gui = new Graphics();
+            } else if (bootmode == "N")
+            {
+
+            } else
+            {
+                InternalParse internalParse= new InternalParse();
+                Console.WriteLine("Welcome to the ChaseOS interpreter.");
+                while (true)
+                {
+                    internalParse.Program(Console.ReadLine());
+                }
             }
         }
         protected override void Run()

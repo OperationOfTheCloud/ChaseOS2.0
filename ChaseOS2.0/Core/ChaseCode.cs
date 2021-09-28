@@ -66,6 +66,25 @@ namespace ChaseOS2._0.Core
 
             switch (segment[1])
             {
+                case "shutdown":
+                    if (uac)
+                    {
+                        Sys.Power.Shutdown();
+                    } else
+                    {
+                        Console.WriteLine("This requires a uac prompt.");
+                    }
+                    break;
+                case "restart":
+                    if (uac)
+                    {
+                        Sys.Power.Reboot();
+                    }
+                    else
+                    {
+                        Console.WriteLine("This requires a uac prompt.");
+                    }
+                    break;
                 case "uac":
                     Console.WriteLine("This script wants permissions to take control of your computer. Y/N");
                     string confirm = Console.ReadLine();

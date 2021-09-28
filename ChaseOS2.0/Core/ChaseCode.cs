@@ -31,7 +31,7 @@ namespace ChaseOS2._0.Core
         
         public InternalParse()
         {
-
+            
         }
         public void Program(string parseText)
         {
@@ -52,12 +52,13 @@ namespace ChaseOS2._0.Core
     public class Library
     {
 
-        
-        
+        public bool uac = false;
+
 
 
         public Library()
         {
+           
         }
         public void Command(string[] segment)
         {
@@ -65,6 +66,14 @@ namespace ChaseOS2._0.Core
 
             switch (segment[1])
             {
+                case "uac":
+                    Console.WriteLine("This script wants permissions to take control of your computer. Y/N");
+                    string confirm = Console.ReadLine();
+                    if (confirm == "Y")
+                    {
+                        uac = true;
+                    }
+                    break;
                 case "waitforkey":
                     Console.ReadKey();
                     break;
@@ -81,13 +90,16 @@ namespace ChaseOS2._0.Core
                     }
                     break;
                 case "bsod":
-                    Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.Clear();
-                    Console.WriteLine("Your computer ran into a problem, and the errorcode is");
-                    Console.WriteLine(segment[2]);
-                    Console.WriteLine("Restarting in 5 seconds...");
-                    WaitSeconds(5);
-                    Sys.Power.Reboot();
+                    if (uac)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.Clear();
+                        Console.WriteLine("Your computer ran into a problem, and the errorcode is");
+                        Console.WriteLine(segment[2]);
+                        Console.WriteLine("Restarting in 5 seconds...");
+                        WaitSeconds(5);
+                        Sys.Power.Reboot();
+                    }
                     break;
                 case "wait":
                     WaitSeconds(int.Parse(segment[2]));

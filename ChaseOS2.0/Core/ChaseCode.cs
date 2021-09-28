@@ -83,6 +83,8 @@ namespace ChaseOS2._0.Core
                 case "wait":
                     WaitSeconds(int.Parse(segment[2]));
                     break;
+                case "nothing":
+                    break;
             }
         }
         public static void WaitSeconds(int secNum)

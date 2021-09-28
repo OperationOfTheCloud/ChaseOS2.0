@@ -80,7 +80,9 @@ namespace ChaseOS2._0.Core
                     WaitSeconds(5);
                     Sys.Power.Reboot();
                     break;
-           
+                case "wait":
+                    WaitSeconds(int.Parse(segment[2]));
+                    break;
             }
         }
         public static void WaitSeconds(int secNum)

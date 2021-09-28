@@ -125,7 +125,7 @@ namespace ChaseOS.Core
                 }
                 if (cmd == "checkcycles")
                 {
-                    Console.WriteLine(CPU.GetCPUCycleSpeed() + " GHz");
+                    Console.WriteLine(CPU.GetCPUCycleSpeed() / 100000000000 + " GHz");
                     goto Begin;
                 }
 
@@ -221,61 +221,145 @@ namespace ChaseOS.Core
                 }
                 if (cmd == "settings")
                 {
-                    Console.WriteLine("What color for text color?");
-                    string color = Console.ReadLine();
-                    if (color.ToLower() == "blue")
+                    string setting;
+                    Console.WriteLine("What setting to adjust?");
+                    Console.WriteLine("1.) text color \n2.) background color \n3.) memory dump");
+                    setting = Console.ReadLine();
+                    if (setting == "text color")
                     {
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("What color for text color?");
+                        string color = Console.ReadLine();
+                        if (color.ToLower() == "blue")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        if (color.ToLower() == "red")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        if (color.ToLower() == "yellow")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                        }
+                        if (color.ToLower() == "green")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        if (color.ToLower() == "black")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Black;
+                        }
+                        if (color.ToLower() == "blue")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        if (color.ToLower() == "cyan")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                        }
+                        if (color.ToLower() == "darkblue")
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        }
+                        if (color.ToLower() == "darkred")
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                        }
+                        if (color.ToLower() == "darkyellow")
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        }
+                        if (color.ToLower() == "gray")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                        if (color.ToLower() == "magenta")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                        }
+                        if (color.ToLower() == "white")
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        goto Begin;
                     }
-                    if (color.ToLower() == "red")
+                    if (setting == "background color")
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        string bgc;
+                        Console.WriteLine("What color to set the background as?");
+                        bgc = Console.ReadLine();
+                        if (bgc == "blue")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.Clear();
+                        }
+                        if (bgc == "red")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.Clear();
+                        }
+                        if (bgc == "yellow")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Clear();
+                        }
+                        if (bgc == "green")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            Console.Clear();
+                        }
+                        if (bgc == "black")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Clear();
+                        }
+                        if (bgc == "cyan")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            Console.Clear();
+                        }
+                        if (bgc == "darkblue")
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkBlue;
+                            Console.Clear();
+                        }
+                        if (bgc == "darkred")
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.Clear();
+                        }
+                        if (bgc == "darkyellow")
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            Console.Clear();
+                        }
+                        if (bgc == "gray")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Clear();
+                        }
+                        if (bgc == "magenta")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Magenta;
+                            Console.Clear();
+                        }
+                        if (bgc == "white")
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Clear();
+                        }
+                        goto Begin;
                     }
-                    if (color.ToLower() == "yellow")
+                    if (setting == "memory dump")
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.Clear();
+                        Console.WriteLine("All memory contents: ");
+                        Console.WriteLine(cmd + cddefault + FileManager);
+                        Console.WriteLine("Restarting in 15 seconds...");
+                        WaitSeconds(15);
+                        Sys.Power.Reboot();
                     }
-                    if (color.ToLower() == "green")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    if (color.ToLower() == "black")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                    }
-                    if (color.ToLower() == "blue")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                    }
-                    if (color.ToLower() == "cyan")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                    }
-                    if (color.ToLower() == "darkblue")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    }
-                    if (color.ToLower() == "darkred")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                    }
-                    if (color.ToLower() == "darkyellow")
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    }
-                    if (color.ToLower() == "gray")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
-                    if (color.ToLower() == "magenta")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                    }
-                    if (color.ToLower() == "white")
-                    {
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    goto Begin;
                 }
                 if (cmd == "calc")
                 {
@@ -530,6 +614,50 @@ namespace ChaseOS.Core
 
                     Console.WriteLine("Welcome to the ChaseOS interpreter. Enter a line of code.");
                     internalParse.Program(Console.ReadLine());
+                }
+                if (cmd == "chase")
+                {
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(294);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(196, 500);
+                    Sys.PCSpeaker.Beep(220, 250);
+                    Sys.PCSpeaker.Beep(221);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(196);
+                    Sys.PCSpeaker.Beep(392, 250);
+                    Sys.PCSpeaker.Beep(392);
+                    Sys.PCSpeaker.Beep(294, 500);
+                    Sys.PCSpeaker.Beep(220, 250);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(294);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(196, 500);
+                    Sys.PCSpeaker.Beep(220, 250);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(247);
+                    Sys.PCSpeaker.Beep(262);
+                    Sys.PCSpeaker.Beep(220);
+                    Sys.PCSpeaker.Beep(196);
+                    Sys.PCSpeaker.Beep(294);
+                    Sys.PCSpeaker.Beep(294);
+                    Sys.PCSpeaker.Beep(294);
+                    Sys.PCSpeaker.Beep(330);
+                    Sys.PCSpeaker.Beep(294, 500);
+                    goto Begin;
                 }
                 if (cmd == "ls")
                 {

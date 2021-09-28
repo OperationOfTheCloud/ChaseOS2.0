@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Sys = Cosmos.System;
-using ChaseOS.Core;
 using ChaseOS2._0.Core;
 
 namespace ChaseOS2._0

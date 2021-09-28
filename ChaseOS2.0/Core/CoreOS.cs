@@ -14,12 +14,12 @@ using Cosmos.System.Graphics;
 using ChaseOS2._0.ChaseGraphicsAPI;
 using Cosmos.Core;
 using System.Threading;
-using ChaseOS.Core;
+using ChaseOS2._0.Core;
 using Cosmos.HAL;
 using System.Net.Sockets;
 using ChaseOS2._0;
 using ChaseOS2._0.Core;
-namespace ChaseOS.Core
+namespace ChaseOS2._0.Core
 {
     class Commands
     {
@@ -29,6 +29,7 @@ namespace ChaseOS.Core
         public string rootUser;
         public string rootPass;
         public bool admin;
+        public static string globalVar;
         public InternalParse internalParse = new InternalParse();
         public Commands()
         {

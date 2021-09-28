@@ -68,14 +68,17 @@ namespace ChaseOS2._0.Core
                 case "waitforkey":
                     Console.ReadKey();
                     break;
-                case "pressenter":
-                    Console.ReadLine();
-                    break;
                 case "beep":
                     Console.Beep();
                     break;
                 case "print":
-                    Console.WriteLine(segment[2]);
+                    if (segment[2] == "//GLOBALVAR//")
+                    {
+                        Console.WriteLine(Commands.globalVar);
+                    } else
+                    {
+                        Console.WriteLine(segment[2]);
+                    }
                     break;
                 case "createfile":
                     Kernel.FileManager.CreateFile(segment[2]);
@@ -92,8 +95,25 @@ namespace ChaseOS2._0.Core
                 case "wait":
                     WaitSeconds(int.Parse(segment[2]));
                     break;
+                case "addprint":
+                    Console.WriteLine(Convert.ToInt32(segment[1]) + Convert.ToInt32(segment[2]));
+                    break;
+                case "subtractprint":
+                    Console.WriteLine(Convert.ToInt32(segment[1]) - Convert.ToInt32(segment[2]));
+                    break;
+                case "multiplyprint":
+                    Console.WriteLine(Convert.ToInt32(segment[1]) * Convert.ToInt32(segment[2]));
+                    break;
+                case "divideprint":
+                    Console.WriteLine(Convert.ToInt32(segment[1]) / Convert.ToInt32(segment[2]));
+                    break;
+                case "input":
+                    string bruh = Console.ReadLine();
+                    Commands.globalVar = bruh;
+                    break;
                 case "nothing":
                     break;
+
             }
         }
         public static void WaitSeconds(int secNum)

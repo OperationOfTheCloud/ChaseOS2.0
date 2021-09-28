@@ -65,6 +65,15 @@ namespace ChaseOS2._0.Core
 
             switch (segment[1])
             {
+                case "waitforkey":
+                    Console.ReadKey();
+                    break;
+                case "pressenter":
+                    Console.ReadLine();
+                    break;
+                case "beep":
+                    Console.Beep();
+                    break;
                 case "print":
                     Console.WriteLine(segment[2]);
                     break;

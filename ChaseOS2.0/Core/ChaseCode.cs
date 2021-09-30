@@ -67,7 +67,7 @@ namespace ChaseOS2._0.Core
             switch (segment[1])
             {
                 case "shutdown":
-                    if (uac)
+                    if (Commands.adminScript)
                     {
                         Sys.Power.Shutdown();
                     } else
@@ -76,7 +76,7 @@ namespace ChaseOS2._0.Core
                     }
                     break;
                 case "restart":
-                    if (uac)
+                    if (Commands.adminScript)
                     {
                         Sys.Power.Reboot();
                     }
@@ -90,7 +90,7 @@ namespace ChaseOS2._0.Core
                     string confirm = Console.ReadLine();
                     if (confirm == "Y")
                     {
-                        uac = true;
+                        Commands.adminScript = true;
                     }
                     break;
                 case "waitforkey":

@@ -21,6 +21,7 @@ namespace ChaseOS2._0
         public static CosmosVFS FileManager = new Sys.FileSystem.CosmosVFS();
         public static Graphics gui;
         private static Commands OS;
+        public bool hi;
         protected override void BeforeRun()
         {
             try

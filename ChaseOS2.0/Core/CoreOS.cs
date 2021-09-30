@@ -28,7 +28,8 @@ namespace ChaseOS2._0.Core
         public CosmosVFS FileManager;
         public string rootUser;
         public string rootPass;
-        public bool admin;
+        public static bool admin;
+        public static bool adminScript;
         public static string globalVar;
         public InternalParse internalParse = new InternalParse();
         public Commands()

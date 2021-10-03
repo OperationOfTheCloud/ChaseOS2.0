@@ -81,38 +81,7 @@ namespace ChaseOS2._0
                         {
                             login = true;
                             Console.WriteLine("Welcome " + user);
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 1/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 2/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 3/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 4/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 5/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 6/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 7/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 8/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 9/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
-                            Console.WriteLine("Welcome... 10/10 scripts loaded.");
-                            WaitSeconds(1);
-                            Console.Clear();
+                           
                             Console.WriteLine("Welcome. Loading...");
                             Console.WriteLine("Copyright ChaseOS2.0");
                         }
@@ -178,6 +147,7 @@ namespace ChaseOS2._0
                                 string contents6 = @"" + user3.Length + "" + password4.Length;
                                 byte[] data7 = Encoding.ASCII.GetBytes(contents6);
                                 filestream5.Write(data7, 0, (int)contents6.Length);
+
                                 Console.WriteLine("We are all setup! Now we just need to setup the computer.");
                                 Console.WriteLine("This will take a few seconds...");
 
@@ -803,11 +773,15 @@ namespace ChaseOS2._0
                     FileManager.DeleteFile(file1);
                     var file2 = FileManager.GetFile(@"0:\login.sys");
                     FileManager.DeleteFile(file2);
-                    Console.WriteLine("Repaired");
+                    var file3 = FileManager.GetFile(@"0:\rootData.sys");
+                    FileManager.DeleteFile(file1);
+                    var file4 = FileManager.GetFile(@"0:\root.sys");
+                    FileManager.DeleteFile(file2);
+                    Console.WriteLine("Repaired. Resetup your login. Restarting in 10 seconds.");
                 } catch
                 {
                     
-                    Console.WriteLine("A system repair error has occured. This can potentially mean that you should reinstall ChaseOS.");
+                    Console.WriteLine("A system repair error has occured. This can potentially mean that you should reinstall ChaseOS. Restarting in 10 seconds");
                     Console.WriteLine(e);
                 }
                 WaitSeconds(10);

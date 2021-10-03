@@ -31,11 +31,13 @@ namespace ChaseOS2._0.Core
         public static bool admin;
         public static bool adminScript;
         public static string globalVar;
+        public static bool bootAnimation;
+        public static bool systemReserved;
         public InternalParse internalParse = new InternalParse();
         public Commands()
         {
 
-
+            systemReserved = true;
             FileManager = Kernel.FileManager;
         cddefault = @"0:/";
             var thing = FileManager.GetFile(@"0:\root.sys");
@@ -73,9 +75,26 @@ namespace ChaseOS2._0.Core
         {
             try
             {
-                Begin:
-
-                Console.Write("Time: " + DateTime.Now + " Path: " + cddefault + " ChaseOS>");
+            Begin:
+                if (bootAnimation == true)
+                {
+                    Console.Write("Time: " + DateTime.Now + " Path: " + cddefault + " ChaseOS>");
+                } else
+                {
+                    string start = "Time: " + DateTime.Now + " Path: " + cddefault + " ChaseOS>";
+                    string Pre = "";
+                    foreach (char c in start)
+                    {
+                        string character = c.ToString();
+                        Pre = Pre + character;
+                        
+                        Console.Write(Pre);
+                        DelayInMS(250);
+                        Console.Clear();
+                    }
+                    Console.Write(start);
+                    bootAnimation = true;
+                }
                 string cmd = Console.ReadLine();
                 if (cddefault.EndsWith(@"/"))
                 {
@@ -238,7 +257,7 @@ namespace ChaseOS2._0.Core
                 {
                     string setting;
                     Console.WriteLine("What setting to adjust?");
-                    Console.WriteLine("1.) text color \n2.) background color \n3.) memory dump");
+                    Console.WriteLine("1.) text color \n2.) background color \n3.) memory dump 4.) choose to hide system files");
                     setting = Console.ReadLine();
                     if (setting == "text color")
                     {
@@ -374,6 +393,15 @@ namespace ChaseOS2._0.Core
                         Console.WriteLine("Restarting in 15 seconds...");
                         WaitSeconds(15);
                         Sys.Power.Reboot();
+                    }
+                    if (setting == "choose to hide system files")
+                    {
+                        Console.WriteLine("Should this feature be on? Y/N");
+                        string yn = Console.ReadLine();
+                        if (yn == "Y")
+                        {
+                            systemReserved = true;
+                        }
                     }
                 }
                 if (cmd == "calc")
@@ -712,6 +740,7 @@ namespace ChaseOS2._0.Core
 
                     Console.WriteLine("Welcome to the ChaseOS interpreter. Enter a line of code.");
                     internalParse.Program(Console.ReadLine());
+                    goto Begin;
                 }
                 if (cmd == "chase")
                 {
@@ -874,6 +903,17 @@ namespace ChaseOS2._0.Core
             while (RTC.Second != EndSec)
             {
                 // Loop round
+            }
+        }
+        void DelayInMS(int ms) // Stops the code for milliseconds and then resumes it (Basically It's delay)
+        {
+            for (int i = 0; i < ms * 100000; i++)
+            {
+                ;
+                ;
+                ;
+                ;
+                ;
             }
         }
     }

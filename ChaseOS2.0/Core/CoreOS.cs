@@ -117,6 +117,7 @@ namespace ChaseOS2._0.Core
                     {
                         internalParse.Program(command);
                     }
+                    //
                 }
                 if  (cmd == "admin")
                 {

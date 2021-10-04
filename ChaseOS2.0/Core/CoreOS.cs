@@ -215,8 +215,8 @@ namespace ChaseOS2._0.Core
                 }
                 if (cmd == "version")
                 {
-                    Console.WriteLine("Version: 21.0, ChaseOS is an Operating system which is a small project, there is no gui design.");
-                    Console.WriteLine("Credits to Reese or chickendad#3076 for being a developer. Owner: Chase or dff#1307");
+                    Console.WriteLine("Build 1768.9, ChaseOS is an Operating system which is a small project, there is no gui design.");
+                    Console.WriteLine("Credits to Reese or chickendad#3076 for being a developer. Owner: Chase or dff#5877");
                     goto Begin;
                 }
                 if (cmd == "createdirectory")

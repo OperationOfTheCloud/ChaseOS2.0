@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using Sys = Cosmos.System;
 using ChaseOS2._0.Core;
+using ChaseOS2._0.Apps;
 
 namespace ChaseOS2._0
 {
@@ -22,6 +23,7 @@ namespace ChaseOS2._0
         public static Graphics gui;
         private static Commands OS;
         public bool hi;
+        
         protected override void BeforeRun()
         {
             try
@@ -29,6 +31,8 @@ namespace ChaseOS2._0
                 Console.WriteLine("Welcome to ChaseOS 2.0, a revamp of ChaseOS");
                 Console.WriteLine("Preparing...");
                 Sys.FileSystem.VFS.VFSManager.RegisterVFS(FileManager);
+                Console.WriteLine("Loading appstore...");
+                
                 Console.WriteLine("Welcome.");
                 Sys.PCSpeaker.Beep();
             }

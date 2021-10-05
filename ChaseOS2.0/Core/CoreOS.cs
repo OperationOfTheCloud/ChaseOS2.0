@@ -19,6 +19,7 @@ using Cosmos.HAL;
 using System.Net.Sockets;
 using ChaseOS2._0;
 using ChaseOS2._0.Core;
+using ChaseOS2._0.Apps;
 namespace ChaseOS2._0.Core
 {
     class Commands
@@ -34,6 +35,7 @@ namespace ChaseOS2._0.Core
         public static bool bootAnimation;
         public static bool systemReserved;
         public InternalParse internalParse = new InternalParse();
+        public static AppHandler appHandler = new AppHandler();
         public Commands()
         {
 
@@ -191,6 +193,12 @@ namespace ChaseOS2._0.Core
                     FileManager.Format(driveId, "FAT32", true);
                     goto Begin;
                 }
+                if (cmd == "appstore")
+                {
+                    Console.WriteLine("App?");
+                    string app = Console.ReadLine();
+                    appHandler.FindApp(app);
+                }
                 if (cmd == "format")
                 {
                     Console.WriteLine(@"Drive? Example: 0:\");
@@ -258,7 +266,7 @@ namespace ChaseOS2._0.Core
                 {
                     string setting;
                     Console.WriteLine("What setting to adjust?");
-                    Console.WriteLine("1.) text color \n2.) background color \n3.) memory dump 4.) choose to hide system files");
+                    Console.WriteLine("1.) text color \n2.) background color \n3.) memory dump \n4.) choose to hide system files");
                     setting = Console.ReadLine();
                     if (setting == "text color")
                     {
@@ -402,6 +410,9 @@ namespace ChaseOS2._0.Core
                         if (yn == "Y")
                         {
                             systemReserved = true;
+                        } else
+                        {
+                            systemReserved = false;
                         }
                     }
                 }
@@ -798,17 +809,41 @@ namespace ChaseOS2._0.Core
                             {
                                 Console.WriteLine("[THIS FILE CAN ONLY BE VIEWED BY AN ADMIN]");
                             }
+                            else if (directoryEntry.mName.EndsWith(".sys"))
+                            {
+                                if (systemReserved == true)
+                                {
+
+                                } else
+                                {
+                                    Console.WriteLine(directoryEntry.mName);
+                                }
+                            }
                             else
                             {
                                 Console.WriteLine(directoryEntry.mName);
                             }
                         }
+                        
                     } else
                     {
                         foreach (var directoryEntry in directory_list)
                         {
                             {
-                                Console.WriteLine(directoryEntry.mName);
+                                if (directoryEntry.mName.EndsWith(".sys"))
+                                {
+                                    if (systemReserved == true)
+                                    {
+
+                                    } else
+                                    {
+                                        Console.WriteLine(directoryEntry.mName);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine(directoryEntry.mName);
+                                }
                             }
                         }
                     }

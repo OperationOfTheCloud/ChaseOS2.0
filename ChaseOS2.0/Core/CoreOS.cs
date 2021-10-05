@@ -119,7 +119,7 @@ namespace ChaseOS2._0.Core
                     {
                         internalParse.Program(command);
                     }
-                    
+                    goto Begin;
                 }
                 if  (cmd == "admin")
                 {
@@ -198,6 +198,7 @@ namespace ChaseOS2._0.Core
                     Console.WriteLine("App?");
                     string app = Console.ReadLine();
                     appHandler.FindApp(app);
+                    goto Begin;
                 }
                 if (cmd == "format")
                 {
@@ -414,6 +415,7 @@ namespace ChaseOS2._0.Core
                         {
                             systemReserved = false;
                         }
+                        goto Begin;
                     }
                 }
                 if (cmd == "calc")
@@ -574,6 +576,7 @@ namespace ChaseOS2._0.Core
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     Console.Clear();
+                    goto Begin;
                 }
                 if (cmd == "removedirectory")
                 {
@@ -753,6 +756,7 @@ namespace ChaseOS2._0.Core
                     Console.WriteLine("Welcome to the ChaseOS interpreter. Enter a line of code.");
                     internalParse.Program(Console.ReadLine());
                     goto Begin;
+
                 }
                 if (cmd == "chase")
                 {

@@ -11,3 +11,6 @@ ChaseOS used to pack all of its commands into the kernel. ChaseOS2.0 transfered 
 
 # ChaseCode Library
 This is a library that manages the interpreter of ChaseOS known as ChaseCode.
+
+# Appstore
+Will be in versions above V0.0.8

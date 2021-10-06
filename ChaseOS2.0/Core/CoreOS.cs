@@ -759,16 +759,7 @@ namespace ChaseOS2._0.Core
                     goto Begin;
 
                 }
-                if (cmd == "tcpconnect")
-                {
-                    TcpClient tcpClient = new TcpClient();
-                    Console.WriteLine("Server hostname?");
-                    string host = Console.ReadLine();
-                    Console.WriteLine("Server port?");
-                    int port = Convert.ToInt32(Console.ReadLine());
-                    tcpClient.Connect(host, port);
-                  
-                }
+               
                 if (cmd == "chase")
                 {
                     Sys.PCSpeaker.Beep(220);

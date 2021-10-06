@@ -20,6 +20,7 @@ using System.Net.Sockets;
 using ChaseOS2._0;
 using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
+using Cosmos.HAL.Network;
 namespace ChaseOS2._0.Core
 {
     class Commands
@@ -757,6 +758,16 @@ namespace ChaseOS2._0.Core
                     internalParse.Program(Console.ReadLine());
                     goto Begin;
 
+                }
+                if (cmd == "tcpconnect")
+                {
+                    TcpClient tcpClient = new TcpClient();
+                    Console.WriteLine("Server hostname?");
+                    string host = Console.ReadLine();
+                    Console.WriteLine("Server port?");
+                    int port = Convert.ToInt32(Console.ReadLine());
+                    tcpClient.Connect(host, port);
+                  
                 }
                 if (cmd == "chase")
                 {

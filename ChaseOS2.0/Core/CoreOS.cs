@@ -28,7 +28,7 @@ namespace ChaseOS2._0.Core
     class Commands
     {
 
-        public string cddefault;
+        public static string cddefault;
         public CosmosVFS FileManager;
         public string rootUser;
         public string rootPass;
@@ -937,7 +937,7 @@ namespace ChaseOS2._0.Core
         }
         public static string KEY(string PATH)
         {
-
+            if (Sys.FileSystem.VFS.VFSManager.FileExists(PATH) == false) Sys.FileSystem.VFS.VFSManager.CreateFile(PATH);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.SetCursorPosition(0, 0);

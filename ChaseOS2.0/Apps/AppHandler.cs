@@ -34,6 +34,10 @@ namespace ChaseOS2._0.Apps
                     Console.WriteLine("RAM MB: " + CPU.GetAmountOfRAM());
                     Console.WriteLine("CPU Cycle Speed: "+CPU.GetCPUCycleSpeed());
                     break;
+                case "notepad":
+                    Console.WriteLine("File: ");
+                    Core.Commands.KEY(Core.Commands.cddefault + Console.ReadLine());
+                    break;
             }
         }
         

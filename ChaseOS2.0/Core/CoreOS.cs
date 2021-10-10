@@ -937,7 +937,7 @@ namespace ChaseOS2._0.Core
         }
         public static string KEY(string PATH)
         {
-            if (Sys.FileSystem.VFS.VFSManager.FileExists(PATH) == false) Sys.FileSystem.VFS.VFSManager.CreateFile(PATH);
+            
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.SetCursorPosition(0, 0);
@@ -949,7 +949,7 @@ namespace ChaseOS2._0.Core
             Console.Write("ChaseOS Notepad - " + @PATH + "\n");
             for (int i = 0; i < 80; i++) Console.Write("_");
             Console.SetCursorPosition(0, 1);
-            Console.Write("ESC for exit");
+            Console.Write("Press ESC to exit.");
             Console.SetCursorPosition(0, 2);
             Console.BackgroundColor = ConsoleColor.Black;
             int xint = Console.CursorLeft;
@@ -971,6 +971,22 @@ namespace ChaseOS2._0.Core
                         if (xint == 0) break;
                     }
 
+                }
+                else if (input.Key == ConsoleKey.LeftArrow)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                }
+                else if (input.Key == ConsoleKey.RightArrow)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
+                }
+                else if (input.Key == ConsoleKey.UpArrow)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
+                }
+                else if (input.Key == ConsoleKey.DownArrow)
+                {
+                    Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop + 1);
                 }
                 else if (input.Key == ConsoleKey.NumPad1)
                 {
@@ -1320,7 +1336,7 @@ namespace ChaseOS2._0.Core
                         yint = Console.CursorTop;
                         int del = back.Length;
                         back = back.Remove(del - 1, 1);
-                        
+
                         tosav = back;
 
                         xint--;

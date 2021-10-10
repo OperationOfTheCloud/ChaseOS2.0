@@ -64,7 +64,7 @@ namespace ChaseOS2._0.Core
         {
 
 
-            switch (segment[1])
+            switch (segment[1].ToUpper())
             {
                 case "rainbow":
                     if (Commands.adminScript)

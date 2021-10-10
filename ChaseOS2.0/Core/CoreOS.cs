@@ -21,6 +21,8 @@ using ChaseOS2._0;
 using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
 using Cosmos.HAL.Network;
+using System.IO;
+
 namespace ChaseOS2._0.Core
 {
     class Commands
@@ -617,7 +619,7 @@ namespace ChaseOS2._0.Core
                 {
                     Console.WriteLine("filename?");
                     string filename1 = Console.ReadLine();
-                    var file = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1);
+
                     if (filename1.EndsWith(".sys"))
                     {
                         Console.WriteLine("This is a system or protected file. Are you sure you want to do something with it? Y/N");
@@ -626,20 +628,7 @@ namespace ChaseOS2._0.Core
                         {
                             if (admin == true)
                             {
-                                var filestream231 = file.GetFileStream();
-                                Console.WriteLine("contents");
-                                string contents231 = Console.ReadLine();
-                                byte[] data231 = Encoding.ASCII.GetBytes(contents231);
-                                string newLine31 = "\n";
-                                byte[] data331 = Encoding.ASCII.GetBytes("\n");
-                                var file21 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1).GetFileStream();
-                                byte[] data1 = new byte[file21.Length];
-                                file21.Read(data1, 0, (int)file21.Length);
-                                string script1 = Encoding.Default.GetString(data1);
-                                filestream231.Write(data331, 0, (int)newLine31.Length);
-
-                                filestream231.Write(data231, 0, (int)contents231.Length);
-                                Console.WriteLine("file edited sucessfully");
+                                KEY(@cddefault + filename1);
                                 goto Begin;
                             }
                             else
@@ -650,20 +639,8 @@ namespace ChaseOS2._0.Core
                         goto Begin;
                     }
 
-                    var filestream23 = file.GetFileStream();
-                    Console.WriteLine("contents");
-                    string contents23 = Console.ReadLine();
-                    byte[] data23 = Encoding.ASCII.GetBytes(contents23);
-                    string newLine3 = "\n";
-                    byte[] data33 = Encoding.ASCII.GetBytes("\n");
-                    var file2 = Sys.FileSystem.VFS.VFSManager.GetFile(@cddefault + filename1).GetFileStream();
-                    byte[] data = new byte[file2.Length];
-                    file2.Read(data, 0, (int)file2.Length);
-                    string script = Encoding.Default.GetString(data);
-                    filestream23.Write(data33, 0, (int)newLine3.Length);
+                    KEY(@cddefault + filename1);
 
-                    filestream23.Write(data23, 0, (int)contents23.Length);
-                    Console.WriteLine("file edited sucessfully");
                     goto Begin;
                 }
                 if (cmd == "deletefile")
@@ -957,6 +934,411 @@ namespace ChaseOS2._0.Core
                 ;
                 ;
             }
+        }
+        public static string KEY(string PATH)
+        {
+
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.SetCursorPosition(0, 0);
+            for (int i = 0; i < 80; i++) Console.Write(" ");
+            Console.SetCursorPosition(0, 0);
+            Console.Write("ChaseOS Notepad - " + @PATH + "\n");
+            for (int i = 0; i < 80; i++) Console.Write("_");
+            Console.SetCursorPosition(0, 1);
+            Console.Write("ESC for exit");
+            Console.SetCursorPosition(0, 2);
+            Console.BackgroundColor = ConsoleColor.Black;
+            int xint = Console.CursorLeft;
+            int yint = Console.CursorTop;
+            string tosav = getcontents(@PATH);
+            Console.Write(tosav);
+            for (; ; )
+            {
+
+                ConsoleKeyInfo input = Console.ReadKey();
+                if (input.Key == ConsoleKey.Enter)
+                {
+
+                    for (; ; )
+                    {
+                        tosav += " ";
+                        Console.Write(" ");
+                        xint = Console.CursorLeft;
+                        if (xint == 0) break;
+                    }
+
+                }
+                else if (input.Key == ConsoleKey.NumPad1)
+                {
+                    tosav += "1";
+                }
+                else if (input.Key == ConsoleKey.NumPad2)
+                {
+                    tosav += "2";
+                }
+                else if (input.Key == ConsoleKey.NumPad3)
+                {
+                    tosav += "3";
+                }
+                else if (input.Key == ConsoleKey.NumPad4)
+                {
+                    tosav += "4";
+                }
+                else if (input.Key == ConsoleKey.NumPad5)
+                {
+                    tosav += "5";
+                }
+                else if (input.Key == ConsoleKey.NumPad6)
+                {
+                    tosav += "6";
+                }
+                else if (input.Key == ConsoleKey.NumPad7)
+                {
+                    tosav += "7";
+                }
+                else if (input.Key == ConsoleKey.NumPad8)
+                {
+                    tosav += "8";
+                }
+                else if (input.Key == ConsoleKey.NumPad9)
+                {
+                    tosav += "9";
+                }
+                else if (input.Key == ConsoleKey.NumPad0)
+                {
+                    tosav += "0";
+                }
+                else if (input.KeyChar == '!')
+                {
+                    tosav += "!";
+                }
+                else if (input.KeyChar == '@')
+                {
+                    tosav += "@";
+                }
+                else if (input.KeyChar == '#')
+                {
+                    tosav += "#";
+                }
+                else if (input.KeyChar == '$')
+                {
+                    tosav += "$";
+                }
+                else if (input.KeyChar == '%')
+                {
+                    tosav += "%";
+                }
+                else if (input.KeyChar == '^')
+                {
+                    tosav += "^";
+                }
+                else if (input.KeyChar == '&')
+                {
+                    tosav += "&";
+                }
+                else if (input.KeyChar == '*')
+                {
+                    tosav += "*";
+                }
+                else if (input.KeyChar == '(')
+                {
+                    tosav += "(";
+                }
+                else if (input.KeyChar == ')')
+                {
+                    tosav += ")";
+                }
+                else if (input.KeyChar == '-')
+                {
+                    tosav += "-";
+                }
+                else if (input.KeyChar == '_')
+                {
+                    tosav += "_";
+                }
+                else if (input.KeyChar == '=')
+                {
+                    tosav += "=";
+                }
+                else if (input.KeyChar == '+')
+                {
+                    tosav += "+";
+                }
+                else if (input.KeyChar == '[')
+                {
+                    tosav += "[";
+                }
+                else if (input.KeyChar == ']')
+                {
+                    tosav += "]";
+                }
+                else if (input.KeyChar == '{')
+                {
+                    tosav += "{";
+                }
+                else if (input.KeyChar == '}')
+                {
+                    tosav += "}";
+                }
+                else if (input.KeyChar == ';')
+                {
+                    tosav += ";";
+                }
+                else if (input.KeyChar == ':')
+                {
+                    tosav += ":";
+                }
+                else if (input.KeyChar == '\'')
+                {
+                    tosav += "\"";
+                }
+                else if (input.KeyChar == ',')
+                {
+                    tosav += ",";
+                }
+                else if (input.KeyChar == '.')
+                {
+                    tosav += ".";
+                }
+                else if (input.KeyChar == '<')
+                {
+                    tosav += ">";
+                }
+                else if (input.KeyChar == '/')
+                {
+                    tosav += "/";
+                }
+                else if (input.KeyChar == '?')
+                {
+                    tosav += "?";
+                }
+                else if (input.KeyChar == '|')
+                {
+                    tosav += "|";
+                }
+                else if (input.KeyChar == '\\')
+                {
+                    tosav += "\\";
+                }
+                else if (input.KeyChar == '`')
+                {
+                    tosav += "`";
+                }
+                else if (input.KeyChar == '~')
+                {
+                    tosav += "~";
+                }
+                else if (input.Key == ConsoleKey.D1)
+                {
+                    tosav += "1";
+                }
+                else if (input.Key == ConsoleKey.D2)
+                {
+                    tosav += "2";
+                }
+                else if (input.Key == ConsoleKey.D3)
+                {
+                    tosav += "3";
+                }
+                else if (input.Key == ConsoleKey.D4)
+                {
+                    tosav += "4";
+                }
+                else if (input.Key == ConsoleKey.D5)
+                {
+                    tosav += "5";
+                }
+                else if (input.Key == ConsoleKey.D6)
+                {
+                    tosav += "6";
+                }
+                else if (input.Key == ConsoleKey.D7)
+                {
+                    tosav += "7";
+                }
+                else if (input.Key == ConsoleKey.D8)
+                {
+                    tosav += "8";
+                }
+                else if (input.Key == ConsoleKey.D9)
+                {
+                    tosav += "9";
+                }
+                else if (input.Key == ConsoleKey.D0)
+                {
+                    tosav += "0";
+                }
+                else if (input.Key == ConsoleKey.A)
+                {
+                    tosav += "A";
+                }
+                else if (input.Key == ConsoleKey.B)
+                {
+                    tosav += "B";
+                }
+                else if (input.Key == ConsoleKey.C)
+                {
+                    tosav += "C";
+                }
+                else if (input.Key == ConsoleKey.D)
+                {
+                    tosav += "D";
+                }
+                else if (input.Key == ConsoleKey.E)
+                {
+                    tosav += "E";
+                }
+                else if (input.Key == ConsoleKey.D)
+                {
+                    tosav += "D";
+                }
+                else if (input.Key == ConsoleKey.G)
+                {
+                    tosav += "G";
+                }
+                else if (input.Key == ConsoleKey.H)
+                {
+                    tosav += "H";
+                }
+                else if (input.Key == ConsoleKey.I)
+                {
+                    tosav += "I";
+                }
+                else if (input.Key == ConsoleKey.J)
+                {
+                    tosav += "J";
+                }
+                else if (input.Key == ConsoleKey.K)
+                {
+                    tosav += "K";
+                }
+                else if (input.Key == ConsoleKey.L)
+                {
+                    tosav += "L";
+                }
+                else if (input.Key == ConsoleKey.M)
+                {
+                    tosav += "M";
+                }
+                else if (input.Key == ConsoleKey.N)
+                {
+                    tosav += "N";
+                }
+                else if (input.Key == ConsoleKey.O)
+                {
+                    tosav += "O";
+                }
+                else if (input.Key == ConsoleKey.P)
+                {
+                    tosav += "P";
+                }
+                else if (input.Key == ConsoleKey.R)
+                {
+                    tosav += "R";
+                }
+                else if (input.Key == ConsoleKey.S)
+                {
+                    tosav += "S";
+                }
+                else if (input.Key == ConsoleKey.T)
+                {
+                    tosav += "T";
+                }
+                else if (input.Key == ConsoleKey.U)
+                {
+                    tosav += "U";
+                }
+                else if (input.Key == ConsoleKey.W)
+                {
+                    tosav += "W";
+                }
+                else if (input.Key == ConsoleKey.V)
+                {
+                    tosav += "V";
+                }
+                else if (input.Key == ConsoleKey.Y)
+                {
+                    tosav += "Y";
+                }
+                else if (input.Key == ConsoleKey.X)
+                {
+                    tosav += "X";
+                }
+                else if (input.Key == ConsoleKey.Q)
+                {
+                    tosav += "Q";
+                }
+                else if (input.Key == ConsoleKey.Z)
+                {
+                    tosav += "Z";
+                }
+                else if (input.Key == ConsoleKey.Escape)
+                {
+                    bool shouldSave;
+                    Console.SetCursorPosition(17, 13);
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.WriteLine("[Do you want to save changes? Y/N ]");
+                    string answer = Console.ReadKey().KeyChar.ToString();
+                    if (answer.ToLower() == "y") shouldSave = true;
+                    else shouldSave = false;
+                    if (shouldSave == false)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Clear();
+                        return null;
+                    }
+                    else if (shouldSave == true)
+                    {
+                        byte[] data = Encoding.ASCII.GetBytes(tosav);
+                        Sys.FileSystem.VFS.VFSManager.GetFileStream(PATH).Write(data, 0, (int)tosav.Length);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Clear();
+                        return null;
+                    }
+                }
+                else if (input.Key == ConsoleKey.Tab)
+                {
+                    tosav += "   ";
+                    Console.Write("   ");
+                }
+                else if (input.Key == ConsoleKey.Spacebar)
+                {
+                    tosav += " ";
+                }
+                else if (input.Key == ConsoleKey.Backspace)
+                {
+                    string back = tosav;
+                    if (back.Length != 0)
+                    {
+                        xint = Console.CursorLeft;
+                        yint = Console.CursorTop;
+                        int del = back.Length;
+                        back = back.Remove(del - 1, 1);
+                        
+                        tosav = back;
+
+                        xint--;
+                        Console.SetCursorPosition(xint, yint);
+                        Console.Write(" ");
+                        Console.SetCursorPosition(xint, yint);
+                    }
+                }
+
+            }
+
+        }
+        public static string getcontents(string prefile)
+        {
+            var file2 = Sys.FileSystem.VFS.VFSManager.GetFile(prefile).GetFileStream();
+            byte[] data2 = new byte[file2.Length];
+            file2.Read(data2, 0, (int)file2.Length);
+            return Encoding.Default.GetString(data2);
         }
     }
 }

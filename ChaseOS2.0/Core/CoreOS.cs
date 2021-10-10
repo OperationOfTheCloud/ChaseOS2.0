@@ -1272,7 +1272,7 @@ namespace ChaseOS2._0.Core
                 {
                     tosav += "Q";
                 }
-                else if (input.Key == ConsoleKey.z)
+                else if (input.Key == ConsoleKey.Z)
                 {
                     tosav += "Z";
                 }

@@ -602,6 +602,11 @@ namespace ChaseOS2._0.Core
                         {
                             if (admin == true)
                             {
+
+
+
+
+
                                 FileManager.CreateFile(filename);
                                 goto Begin;
                             }
@@ -820,6 +825,7 @@ namespace ChaseOS2._0.Core
 
                                     } else
                                     {
+                                        
                                         Console.WriteLine(directoryEntry.mName);
                                     }
                                 }

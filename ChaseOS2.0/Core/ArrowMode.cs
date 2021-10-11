@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChaseOS2._0.ChaseGraphicsAPI;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,16 +11,14 @@ namespace ChaseOS2._0.Core
         public static List<Tuple<string, string, int, int, int>> Choices = new List<Tuple<string, string, int, int, int>>();
         public ArrowMode() {
             Console.Clear();
+            Console.WriteLine("Press enter to activate menu");
             Choices.Add(new Tuple<string, string, int, int, int>("CMD", "DOS", 1, 1, 3));
-            Choices.Add(new Tuple<string, string, int, int, int>("CALCULATOR", "CALC", 3, 1, 10));
+            Choices.Add(new Tuple<string, string, int, int, int>("CALCULATOR", "CALC", 6, 1, 10));
+            Choices.Add(new Tuple<string, string, int, int, int>("GRAHICAL", "GR", 18, 1, 8));
         }
     public void GO()
         {
-            foreach (Tuple<string, string, int, int, int> cord in Choices)
-            {
-                Console.SetCursorPosition(cord.Item3, cord.Item4);
-                Console.WriteLine(cord.Item1);
-            }
+
             while (true)
             {
                 ConsoleKeyInfo input = Console.ReadKey();
@@ -41,8 +40,15 @@ namespace ChaseOS2._0.Core
                 }
                 else if (input.Key == ConsoleKey.Enter)
                 {
+                    
                     Mode();
                     Console.SetCursorPosition(0, 0);
+                    foreach (Tuple<string, string, int, int, int> cord in Choices)
+                    {
+                        Console.SetCursorPosition(cord.Item3, cord.Item4);
+                        Console.WriteLine(cord.Item1);
+                        
+                    }
                 }
             }
         }
@@ -56,6 +62,7 @@ namespace ChaseOS2._0.Core
                     mod = choice.Item2;
                 }
             }
+            Console.Clear();
             switch (mod)
             {
                 case "DOS":
@@ -145,8 +152,15 @@ namespace ChaseOS2._0.Core
                         // Wait for the user to respond before closing.
 
                         break;
+                case "GR":
+                    Kernel.gui = new Graphics();
+                    while (true)
+                    {
+                        Kernel.gui.MouseHandler();
                     }
 
+            }
+            Console.Clear();
         }
 }
 }

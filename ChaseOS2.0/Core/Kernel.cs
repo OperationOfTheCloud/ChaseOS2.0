@@ -114,6 +114,7 @@ namespace ChaseOS2._0
                         {
                             if (a == "install")
                             {
+                                Trailer.Run();
                                 Sys.FileSystem.VFS.VFSManager.CreateFile(@"0:\login.sys");
                                 Sys.FileSystem.VFS.VFSManager.CreateFile(@"0:\loginData.sys");
                                 Sys.FileSystem.VFS.VFSManager.CreateFile(@"0:\root.sys");
@@ -792,7 +793,7 @@ namespace ChaseOS2._0
                 Sys.Power.Reboot();
             }
             Console.WriteLine("Loaded.");
-            Console.WriteLine("Boot into graphical or non-graphical or code mode? G/N/C");
+            Console.WriteLine("Boot into graphical or non-graphical or code mode? G/N/C/A");
             string bootmode = Console.ReadLine();
             if (bootmode == "G")
             {
@@ -800,7 +801,7 @@ namespace ChaseOS2._0
             } else if (bootmode == "N")
             {
 
-            } else
+            } else if (bootmode == "C")
             {
                 InternalParse internalParse= new InternalParse();
                 Console.WriteLine("Welcome to the ChaseOS interpreter.");
@@ -808,6 +809,10 @@ namespace ChaseOS2._0
                 {
                     internalParse.Program(Console.ReadLine());
                 }
+            } else
+            {
+                ArrowMode arrows = new ArrowMode();
+                arrows.GO();
             }
         }
         protected override void Run()

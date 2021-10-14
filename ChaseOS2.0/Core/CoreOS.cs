@@ -16,12 +16,13 @@ using Cosmos.Core;
 using System.Threading;
 using ChaseOS2._0.Core;
 using Cosmos.HAL;
-using System.Net.Sockets;
+
 using ChaseOS2._0;
 using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
 using Cosmos.HAL.Network;
 using System.IO;
+
 
 namespace ChaseOS2._0.Core
 {
@@ -73,7 +74,25 @@ namespace ChaseOS2._0.Core
             check.Close();
             rootPass = pass;
             rootUser = UsernameReal;
-
+            var text = @"
+                                                                             
+                                                       ,----..               
+  ,----..   ,---,                                     /   /   \   .--.--.    
+ /   /   \,--.' |                                    /   .     : /  /    '.  
+|   :     |  |  :                                   .   /   ;.  |  :  /`. /  
+.   |  ;. :  :  :                .--.--.           .   ;   /  ` ;  |  |--`   
+.   ; /--`:  |  |,--. ,--.--.   /  /    '    ,---. ;   |  ; \ ; |  :  ;_     
+;   | ;   |  :  '   |/       \ |  :  /`./   /     \|   :  | ; | '\  \    `.  
+|   : |   |  |   /' .--.  .-. ||  :  ;_    /    /  .   |  ' ' ' : `----.   \ 
+.   | '___'  :  | | |\__\/: . . \  \    `..    ' / '   ;  \; /  | __ \  \  | 
+'   ; : .'|  |  ' | :,"" .--.; |  `----.   '   ;   /|\   \  ',  / /  /`--'  / 
+'   | '/  |  :  :_:,/  /  ,.  | /  /`--'  '   |  / | ;   :    / '--'.     /  
+|   :    /|  | ,'  ;  :   .'   '--'.     /|   :    |  \   \ .'    `--'---'   
+ \   \ .' `--''    |  ,     .-./ `--'---'  \   \  /    `---`                 
+  `---`             `--`---'                `----'                           
+                                                                             
+";
+            Console.WriteLine(text);
         }
 
         public void ChaseOSRun()
@@ -124,6 +143,7 @@ namespace ChaseOS2._0.Core
                     }
                     goto Begin;
                 }
+
                 if  (cmd == "admin")
                 {
                     if (admin == false)
@@ -906,8 +926,26 @@ namespace ChaseOS2._0.Core
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Clear();
-                Console.WriteLine("Your computer ran into a problem, and the errorcode is");
-                Console.WriteLine(e);
+                var text = @"
+                                                
+                         ,----..                
+    ,---,.  .--.--.     /   /   \     ,---,     
+  ,'  .'  \/  /    '.  /   .     :  .'  .' `\   
+,---.' .' |  :  /`. / .   /   ;.  ,---.'     \  
+|   |  |: ;  |  |--` .   ;   /  ` |   |  .`\  | 
+:   :  :  |  :  ;_   ;   |  ; \ ; :   : |  '  | 
+:   |    ; \  \    `.|   :  | ; | |   ' '  ;  : 
+|   :     \ `----.   .   |  ' ' ' '   | ;  .  | 
+|   |   . | __ \  \  '   ;  \; /  |   | :  |  ' 
+'   :  '; |/  /`--'  /\   \  ',  /'   : | /  ;  
+|   |  | ;'--'.     /  ;   :    / |   | '` ,/   
+|   :   /   `--'---'    \   \ .'  ;   :  .'     
+|   | ,'                 `---`    |   ,.'       
+`----'                            '---'         
+                                                
+";
+                Console.Write(text);
+                Console.WriteLine("Error: "+e);
                 Console.WriteLine("Restarting in 5 seconds...");
                 WaitSeconds(5);
                 Sys.Power.Reboot();

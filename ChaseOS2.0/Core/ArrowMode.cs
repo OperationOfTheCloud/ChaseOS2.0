@@ -15,6 +15,8 @@ namespace ChaseOS2._0.Core
             Choices.Add(new Tuple<string, string, int, int, int>("CMD", "DOS", 1, 1, 3));
             Choices.Add(new Tuple<string, string, int, int, int>("CALCULATOR", "CALC", 6, 1, 10));
             Choices.Add(new Tuple<string, string, int, int, int>("GRAHICAL", "GR", 18, 1, 8));
+            Choices.Add(new Tuple<string, string, int, int, int>("NOTEPAD", "padnote", 30, 1, 12));
+
         }
     public void GO()
         {
@@ -158,7 +160,10 @@ namespace ChaseOS2._0.Core
                     {
                         Kernel.gui.MouseHandler();
                     }
-
+                case "padnote":
+                    Console.WriteLine("File: ");
+                    Core.Commands.KEY(Core.Commands.cddefault + Console.ReadLine());
+                    break;
             }
             Console.Clear();
         }

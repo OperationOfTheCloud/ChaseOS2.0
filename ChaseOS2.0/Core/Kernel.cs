@@ -445,6 +445,7 @@ namespace ChaseOS2._0
                                 }
                                 goto Begin;
                             }
+                            
                             if (a == "try")
                             {
                                 while (true)
@@ -764,28 +765,29 @@ namespace ChaseOS2._0
 
                 Console.WriteLine("Loading ChaseOS2.0 ...");
                 OS = new Commands();
+
             }
             catch (Exception e)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.Clear();
                 var text = @"
-                                                                                                                            
-                                                                                                                            
-  ,----..                   ___                                  ,--,               ,---,.                                  
- /   /   \          ,--,  ,--.'|_   ,--,                       ,--.'|             ,'  .' |                                  
-|   :     : __  ,-,--.'|  |  | :,',--.'|                       |  | :           ,---.'   | __  ,-. __  ,-.  ,---.   __  ,-. 
-.   |  ;. ,' ,'/ /|  |,   :  : ' :|  |,                        :  : '           |   |   .,' ,'/ /,' ,'/ /| '   ,'\,' ,'/ /| 
-.   ; /--`'  | |' `--'_ .;__,'  / `--'_      ,---.    ,--.--.  |  ' |           :   :  |-'  | |' '  | |' |/   /   '  | |' | 
-;   | ;   |  |   ,,' ,'||  |   |  ,' ,'|    /     \  /       \ '  | |           :   |  ;/|  |   ,|  |   ,.   ; ,. |  |   ,' 
-|   : |   '  :  / '  | |:__,'| :  '  | |   /    / ' .--.  .-. ||  | :           |   :   .'  :  / '  :  / '   | |: '  :  /   
-.   | '___|  | '  |  | :  '  : |__|  | :  .    ' /   \__\/: . .'  : |__         |   |  |-|  | '  |  | '  '   | .; |  | '    
-'   ; : .';  : |  '  : |__|  | '.''  : |__'   ; :__  ,"" .--.; ||  | '.'|        '   :  ;/;  : |  ;  : |  |   :    ;  : |    
-'   | '/  |  , ;  |  | '.';  :    |  | '.''   | '.'|/  /  ,.  |;  :    ;        |   |    |  , ;  |  , ;   \   \  /|  , ;    
-|   :    / ---'   ;  :    |  ,   /;  :    |   :    ;  :   .'   |  ,   /         |   :   .'---'    ---'     `----'  ---'     
- \   \ .'         |  ,   / ---`-' |  ,   / \   \  /|  ,     .-./---`-'          |   | ,'                                    
-  `---`            ---`-'          ---`-'   `----'  `--`---'                    `----'                                      
-                                                                                                                            
+                                                
+                                                
+    ,---,.                                      
+  ,'  .' |                                      
+,---.'   |  __  ,-.  __  ,-.   ,---.    __  ,-. 
+|   |   .',' ,'/ /|,' ,'/ /|  '   ,'\ ,' ,'/ /| 
+:   :  |-,'  | |' |'  | |' | /   /   |'  | |' | 
+:   |  ;/||  |   ,'|  |   ,'.   ; ,. :|  |   ,' 
+|   :   .''  :  /  '  :  /  '   | |: :'  :  /   
+|   |  |-,|  | '   |  | '   '   | .; :|  | '    
+'   :  ;/|;  : |   ;  : |   |   :    |;  : |    
+|   |    \|  , ;   |  , ;    \   \  / |  , ;    
+|   :   .' ---'     ---'      `----'   ---'     
+|   | ,'                                        
+`----'                                          
+                                                
 ";
                 Console.WriteLine(text);
                 Console.WriteLine("A system error has occured. This can potentially mean that you should reinstall ChaseOS.");
@@ -850,7 +852,7 @@ namespace ChaseOS2._0
 
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.Clear();
-                Console.WriteLine("A system error has occured. This can potentially mean that you should reinstall ChaseOS.");
+                Console.WriteLine("A internal error has occured. This can potentially mean that you should reinstall ChaseOS.");
                 Console.WriteLine(e);
                 Console.WriteLine("Restarting in 10 seconds...");
                 WaitSeconds(10);
@@ -873,6 +875,10 @@ namespace ChaseOS2._0
             {
                 // Loop round
             }
+        }
+        public static void Kill()
+        {
+            Convert.ToInt32("d");
         }
     }
 }

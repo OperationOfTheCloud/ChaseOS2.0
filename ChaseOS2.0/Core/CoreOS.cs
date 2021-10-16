@@ -16,13 +16,13 @@ using Cosmos.Core;
 using System.Threading;
 using ChaseOS2._0.Core;
 using Cosmos.HAL;
-
+using Cosmos.System.Network;
 using ChaseOS2._0;
 using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
-using Cosmos.HAL.Network;
 using System.IO;
-
+using Cosmos.System.Network.IPv4;
+using System.Net.Sockets;
 
 namespace ChaseOS2._0.Core
 {
@@ -102,10 +102,67 @@ namespace ChaseOS2._0.Core
             Begin:
                 if (bootAnimation == true)
                 {
-                    Console.Write("Time: " + DateTime.Now + " Path: " + cddefault + " ChaseOS>");
+                    string cool;
+                    if (admin)
+                    {
+                        cool = rootUser;
+                    } else
+                    {
+                        var thing = FileManager.GetFile(@"0:\login.sys");
+                        var thingr = FileManager.GetFile(@"0:\loginData.sys");
+                        var check = thing.GetFileStream();
+
+                        byte[] dataread1 = new byte[1];
+                        byte[] dataread2 = new byte[1];
+                        var datastream1 = thingr.GetFileStream();
+                        datastream1.Read(dataread1, 0, 1);
+                        datastream1.Read(dataread2, 0, 1);
+                        int data1 = Convert.ToInt32(Encoding.Default.GetString(dataread1));
+                        int data2 = Convert.ToInt32(Encoding.Default.GetString(dataread2));
+                        byte[] buffer = new byte[data1];
+                        string UsernameReal = "";
+
+
+
+
+
+                        check.Read(buffer, 0, (data1));
+                        cool = Encoding.Default.GetString(buffer);
+                        check.Close();
+                    }
+                    Console.Write(cool+"@chaseos: $ ");
                 } else
                 {
-                    string start = "Time: " + DateTime.Now + " Path: " + cddefault + " ChaseOS>";
+                    string cool;
+                    if (admin)
+                    {
+                        cool = rootUser;
+                    }
+                    else
+                    {
+                        var thing = FileManager.GetFile(@"0:\login.sys");
+                        var thingr = FileManager.GetFile(@"0:\loginData.sys");
+                        var check = thing.GetFileStream();
+
+                        byte[] dataread1 = new byte[1];
+                        byte[] dataread2 = new byte[1];
+                        var datastream1 = thingr.GetFileStream();
+                        datastream1.Read(dataread1, 0, 1);
+                        datastream1.Read(dataread2, 0, 1);
+                        int data1 = Convert.ToInt32(Encoding.Default.GetString(dataread1));
+                        int data2 = Convert.ToInt32(Encoding.Default.GetString(dataread2));
+                        byte[] buffer = new byte[data1];
+                        string UsernameReal = "";
+
+
+
+
+
+                        check.Read(buffer, 0, (data1));
+                        cool = Encoding.Default.GetString(buffer);
+                        check.Close();
+                    }
+                    string start = cool + "@chaseos: $ ";
                     string Pre = "";
                     foreach (char c in start)
                     {
@@ -244,6 +301,10 @@ namespace ChaseOS2._0.Core
                 {
                     Console.WriteLine(cddefault);
                     goto Begin;
+                }
+                if (cmd == "kill")
+                {
+                    Kernel.Kill();
                 }
                 if (cmd == "version")
                 {
@@ -443,8 +504,7 @@ namespace ChaseOS2._0.Core
                 }
                 if (cmd == "calc")
                 {
-                    try
-                    {
+
                         // Declare variables and then initialize to zero.
                         int num1 = 0; int num2 = 0;
 
@@ -527,11 +587,7 @@ namespace ChaseOS2._0.Core
                         // Wait for the user to respond before closing.
 
                         goto Begin;
-                    } catch
-                    {
-                        Console.WriteLine("ERROR OCCURED. PLEASE TRY AGAIN");
-                        goto Begin;
-                    }
+                    
                 }
                 if (cmd == "rainbow")
                 {
@@ -699,6 +755,7 @@ namespace ChaseOS2._0.Core
 
                     goto Begin;
                 }
+
                 if (cmd == "copy")
                 {
                     Console.WriteLine("filename of file to copy");
@@ -1400,5 +1457,6 @@ namespace ChaseOS2._0.Core
             file2.Read(data2, 0, (int)file2.Length);
             return Encoding.Default.GetString(data2);
         }
+
     }
 }

@@ -130,7 +130,9 @@ namespace ChaseOS2._0.Core
                         cool = Encoding.Default.GetString(buffer);
                         check.Close();
                     }
-                    Console.Write(cool+"@chaseos: $ ");
+
+                    Console.Write(cool + "@chaseos: $ ");
+
                 } else
                 {
                     string cool;
@@ -306,6 +308,7 @@ namespace ChaseOS2._0.Core
                 {
                     Kernel.Kill();
                 }
+                    
                 if (cmd == "version")
                 {
                     Console.WriteLine("Build 1768.9, ChaseOS is an Operating system which is a small project, there is no gui design.");

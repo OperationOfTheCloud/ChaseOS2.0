@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using Cosmos.Core;
 using Cosmos.HAL;
+
 namespace ChaseOS2._0.ChaseGraphicsAPI
 {
     public class Graphics
@@ -30,26 +31,130 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
 
 
             canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.Clear(Color.Gray);
-            pen = new Pen(Color.White);
-            mouseState = MouseState.None;
-            px = 3;
-            py = 3;
-            savedPixels = new List<Tuple<Sys.Graphics.Point, Color>>();
-            tabHandler = new TabHandler(canvas);
-            MouseManager.ScreenHeight = (UInt32)canvas.Mode.Rows;
-            MouseManager.ScreenWidth = (UInt32)canvas.Mode.Columns;
-
-            if (THE == true)
-            {
-                for (int i = 0; i <= 350; i++)
-                {
-                    canvas.DrawRectangle(pen, i, i, i, i);
-                    pen.Color = Color.Blue;
-                }
-            }
-            pen.Color = Color.White;
             
+            int aX = 220;
+            int aY = 290;
+            int bX = 320;
+            int bY = 340;
+            int cX = 420;
+            int cY = 290;
+            int dX = 320;
+            int dY = 240;
+            int eX = aX;
+            int eY = aY - 100;
+            int fX = bX;
+            int fY = bY - 100;
+            int gX = cX;
+            int gY = cY - 100;
+            int hX = dX;
+            int hY = dY - 100;
+            Pen pen = new Pen(Color.Red);
+
+            for (int i = 0; i < 200; i++)
+            {
+                if (i < 100)
+                {
+                    canvas.Clear(Color.Black);
+                    aX++;
+                    bX++;
+                    cX--;
+                    dX--;
+                    if (i % 2 == 0)
+                    {
+                        aY++;
+                        bY--;
+                        cY--;
+                        dY++;
+                    }
+
+                    eY = aY - 100;
+                    fY = bY - 100;
+                    gY = cY - 100;
+                    hY = dY - 100;
+                    eX = aX;
+                    fX = bX;
+                    gX = cX;
+                    hX = dX;
+
+                    canvas.DrawLine(pen, eX, eY, aX, aY);
+                    canvas.DrawLine(pen, fX, fY, bX, bY);
+                    canvas.DrawLine(pen, gX, gY, cX, cY);
+                    canvas.DrawLine(pen, hX, hY, dX, dY);
+
+                    canvas.DrawLine(pen, eX, eY, fX, fY);
+                    canvas.DrawLine(pen, fX, fY, gX, gY);
+                    canvas.DrawLine(pen, gX, gY, hX, hY);
+                    canvas.DrawLine(pen, hX, hY, eX, eY);
+
+                    canvas.DrawLine(pen, bX, bY, aX, aY);
+                    canvas.DrawLine(pen, cX, cY, bX, bY);
+                    canvas.DrawLine(pen, dX, dY, cX, cY);
+                    canvas.DrawLine(pen, aX, aY, dX, dY);
+                }
+
+                else if (i >= 100)
+                {
+                    canvas.Clear(Color.Black);
+                    aX--;
+                    bX--;
+                    cX++;
+                    dX++;
+                    if (i % 2 == 0)
+                    {
+                        aY--;
+                        bY++;
+                        cY++;
+                        dY--;
+                    }
+
+                    eY = aY - 100;
+                    fY = bY - 100;
+                    gY = cY - 100;
+                    hY = dY - 100;
+                    eX = aX;
+                    fX = bX;
+                    gX = cX;
+                    hX = dX;
+
+                    canvas.DrawLine(pen, eX, eY, aX, aY);
+                    canvas.DrawLine(pen, fX, fY, bX, bY);
+                    canvas.DrawLine(pen, gX, gY, cX, cY);
+                    canvas.DrawLine(pen, hX, hY, dX, dY);
+
+                    canvas.DrawLine(pen, eX, eY, fX, fY);
+                    canvas.DrawLine(pen, fX, fY, gX, gY);
+                    canvas.DrawLine(pen, gX, gY, hX, hY);
+                    canvas.DrawLine(pen, hX, hY, eX, eY);
+
+                    canvas.DrawLine(pen, bX, bY, aX, aY);
+                    canvas.DrawLine(pen, cX, cY, bX, bY);
+                    canvas.DrawLine(pen, dX, dY, cX, cY);
+                    canvas.DrawLine(pen, aX, aY, dX, dY);
+                }
+                
+                
+                pen = new Pen(Color.White);
+                mouseState = MouseState.None;
+                px = 3;
+                py = 3;
+                savedPixels = new List<Tuple<Sys.Graphics.Point, Color>>();
+                
+                MouseManager.ScreenHeight = (UInt32)canvas.Mode.Rows;
+                MouseManager.ScreenWidth = (UInt32)canvas.Mode.Columns;
+
+                if (THE == true)
+                {
+                    for (int i2 = 0; i <= 350; i2++)
+                    {
+                        canvas.DrawRectangle(pen, i2, i2, i2, i2);
+                        pen.Color = Color.Blue;
+                    }
+                }
+                pen.Color = Color.White;
+
+            }
+            tabHandler = new TabHandler(canvas);
+            canvas.Clear(Color.Gray);
         }
         public void Button(int size, int x, int y, Pen draw)
         {
@@ -146,5 +251,8 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
             pen.Color = Color.White;
             prevmouseState = mouseState;
         }
+
+        }
+
     }
-}
+

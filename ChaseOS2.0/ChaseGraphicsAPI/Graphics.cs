@@ -3,10 +3,12 @@ using Cosmos.System;
 using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+
 using System.Text;
 using Cosmos.Core;
 using Cosmos.HAL;
+using System.Drawing;
+using System.IO;
 
 namespace ChaseOS2._0.ChaseGraphicsAPI
 {
@@ -153,8 +155,33 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
                 pen.Color = Color.White;
 
             }
-            tabHandler = new TabHandler(canvas);
+            for (int i = 0; i <= 45; i++)
+            {
+                canvas.Clear(Color.Black);
+                aX--;
+                bX--;
+                cX++;
+                dX++;
+                if (i % 2 == 0)
+                {
+                    aY--;
+                    bY++;
+                    cY++;
+                    dY--;
+                }
+
+                eY = aY - 100;
+                fY = bY - 100;
+                gY = cY - 100;
+                hY = dY - 100;
+                eX = aX;
+                fX = bX;
+                gX = cX;
+                hX = dX;
+            } 
             canvas.Clear(Color.Gray);
+
+            tabHandler = new TabHandler(canvas);
         }
         public void Button(int size, int x, int y, Pen draw)
         {
@@ -190,6 +217,7 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
                 {
                     canvas.Clear(Color.Gray);
                     savedPixels.Clear();
+
                     pen = new Pen(Color.White);
                     int rows = canvas.Mode.Rows;
                     int columns = canvas.Mode.Columns;
@@ -200,6 +228,7 @@ namespace ChaseOS2._0.ChaseGraphicsAPI
                     {
                         window.draw(canvas);
                     }
+                     
                     usage = 0;
 
                 }

@@ -9,6 +9,8 @@ using System.Text;
 using Sys = Cosmos.System;
 using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
+using Cosmos.System.Network;
+using Cosmos.System.Network.IPv4;
 
 namespace ChaseOS2._0
 {
@@ -276,7 +278,7 @@ namespace ChaseOS2._0
                                     Console.WriteLine("Credits to Reese or chickendad#3076 for being a developer. Owner: Chase or dff#1307");
                                     goto Begin;
                                 }
-                               
+
                                 if (cmd == "echo")
                                 {
                                     Console.WriteLine("Text?");
@@ -342,6 +344,7 @@ namespace ChaseOS2._0
                                     }
                                     goto Begin;
                                 }
+                                
                                 if (cmd == "calc")
                                 {
                                     try

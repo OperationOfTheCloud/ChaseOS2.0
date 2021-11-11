@@ -22,7 +22,6 @@ using ChaseOS2._0.Core;
 using ChaseOS2._0.Apps;
 using System.IO;
 using Cosmos.System.Network.IPv4;
-using System.Net.Sockets;
 
 namespace ChaseOS2._0.Core
 {
@@ -919,6 +918,37 @@ namespace ChaseOS2._0.Core
                     }
                     goto Begin;
                 }
+                if (cmd == "sendrmtmsg")
+                {
+                    Console.WriteLine("Ethernet is required for this command. Confirm? Y/N");
+                    if (Console.ReadLine() == "Y")
+                    {
+                        Console.WriteLine("Port?");
+                        int port = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("First Bit Of IP Address?");
+                        int firstbit = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Second Bit Of IP Address?");
+                        int secbit = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Third Bit Of IP Address?");
+                        int thirdbit = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Fourth Bit Of IP Address?");
+                        int fourthbit = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Message?");
+                        byte[] msg = Encoding.ASCII.GetBytes(Console.ReadLine());
+                        Console.WriteLine("Connecting...");
+                        var netClient = new UdpClient(port);
+                        try
+                        {
+                            netClient.Connect(new Address((byte)firstbit, (byte)secbit, (byte)thirdbit, (byte)fourthbit), port);
+                        } catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        Console.WriteLine("Connected. Sending message...");
+                        netClient.Send(msg);
+                        Console.WriteLine("Sent.");
+                    }
+                }
                 if (cmd == "readfile")
                 {
                     Console.WriteLine("filename?");
@@ -1007,6 +1037,16 @@ namespace ChaseOS2._0.Core
 ";
                 Console.Write(text);
                 Console.WriteLine("Error: "+e);
+                if (e.ToString() == e.Message)
+                {
+                    Console.WriteLine("No Info On The Error.");
+                    
+                } else
+                {
+                    Console.WriteLine(e.Message);
+                    
+                }
+                Console.WriteLine("HRESULT: "+e.HResult.ToString());
                 Console.WriteLine("Restarting in 5 seconds...");
                 WaitSeconds(5);
                 Sys.Power.Reboot();

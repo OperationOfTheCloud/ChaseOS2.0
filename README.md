@@ -14,3 +14,6 @@ This is a library that manages the interpreter of ChaseOS known as ChaseCode.
 
 # Appstore
 Will be in versions above V0.0.8
+
+# Deprecation
+ChaseOS2.0 is being updated to ChaseOS3.0 which is a full rewrite. So say good bye to this one.
